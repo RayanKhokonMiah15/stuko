@@ -41,6 +41,10 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-custom w-100">Login</button>
+
+            <p>belum punya akun?
+                <a href="registrasi">balik lagi</a>
+            </p>
         </form>
 
         @if(session('gagal'))
