@@ -2,30 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function showLoginForm()
-    {
-        return view('auth.login');
+    function tampilRegistrasi() {
+        return view('registrasi');
     }
 
-    public function login(Request $request)
-    {
-        // Validasi login
-        $validated = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-            'confirm_password' => 'required|string|same:password',
-        ]);
+    function submitRegistrasi(Request $request) {
+        $user = new User();
+        $user->name = $request->username;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        //dd($user);
+        return redirect()->route('login.tampil');
+    }
 
-        // Proses login (Misalnya pengecekan database, atau auth)
-        if ($validated) {
-            // Proses login atau redirect
-            return redirect()->route('dashboard'); // Sesuaikan dengan route tujuan
+    function tampilLogin() {
+        return view('login');
+    }
+
+    function submitLogin(Request $request) {
+        $data = $request->only('email', 'password');
+
+        if (Auth::attempt($data)) {
+            $request->session()->regenerate();
+            return redirect()->route('#');
+        } else {
+            return redirect()->back()->with('gagal', 'Email atau password anda salah');
         }
-
-        return back()->withErrors(['login' => 'Login failed!']);
     }
 }
