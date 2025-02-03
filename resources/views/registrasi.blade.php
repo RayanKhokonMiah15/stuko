@@ -44,6 +44,10 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-custom w-100">Register</button>
+
+            <p>sudah punya akun?
+                <a href="login">klik disini</a>
+            </p>
         </form>
     </div>
 </body>

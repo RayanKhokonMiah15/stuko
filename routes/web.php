@@ -7,9 +7,6 @@ Route::get('/', function () {
     return view('intro');
 });
 
-Route::get('/balik', function () {
-    return view('halaman');
-});
 
 Route::get('/registrasi', [AuthController::class, 'tampilRegistrasi'])->name('registrasi.tampil');
 Route::post('/registrasi/submit', [AuthController::class, 'submitRegistrasi'])->name('registrasi.submit');

@@ -17,7 +17,7 @@
 
     <div class="content">
         <h1>RRStudio</h1>
-        <a href="login">Gas lee</a>
+        <a href="registrasi">Gas lee</a>
     </div>
 </div>
 
