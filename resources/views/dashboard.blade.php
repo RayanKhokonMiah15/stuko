@@ -19,4 +19,4 @@
     <!-- Content Column -->
     
 </div>
-@endsection
+@endsection 
