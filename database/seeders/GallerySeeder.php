@@ -15,9 +15,9 @@ class GallerySeeder extends Seeder
     {
         //
         $gallery = [
-            ['Nomor'=>'1','genre'=>'Nature','caption'=>'lorem ipsum cukimai wawa'],
-            ['Nomor'=>'2','genre'=>'City','caption'=>'lorem ipsum cukimai wiwi'],
-            ['Nomor'=>'3','genre'=>'Furniture','caption'=>'lorem ipsum cukimai wuwu'],
+            ['nama_foto'=>'orang kotak','tempat'=>'Nature','caption'=>'lorem ipsum cukimai wawa'],
+            ['nama_foto'=>'orang kotik','tempat'=>'City','caption'=>'lorem ipsum cukimai wiwi'],
+            ['nama_foto'=>'orang kotok','tempat'=>'Furniture','caption'=>'lorem ipsum cukimai wuwu'],
         ];
         DB::table('gallery')->insert($gallery);
     }
