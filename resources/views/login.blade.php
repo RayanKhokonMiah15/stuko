@@ -27,6 +27,12 @@
     </style>
 </head>
 <body>
+
+<div class="container">
+<video autoplay loop muted plays-inline class="bglogin">
+    <source src="{{asset('img/nature.mp4')}}" type="video/mp4">
+</video>
+
     <div class="login-container">
         <h3 class="text-center">Login</h3>
         <h6 class="text-center">Masukan akun yang sudah di daftarkan sebelumnya</h6>
