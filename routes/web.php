@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GalleryController;
 
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::resource('gallery',GalleryController::class);
 
 
 Route::get('/registrasi', [AuthController::class, 'tampilRegistrasi'])->name('registrasi.tampil');
