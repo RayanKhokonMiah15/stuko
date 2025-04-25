@@ -49,22 +49,22 @@
 
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            @foreach ($karyawan as $karyawan)
+                                            @foreach ($gallery as $gallery)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>
-                                                        @if ($karyawan->foto)
-                                                        <img style="max-width: 100px; max-height:100px" src="{{url('foto').'/'.$karyawan->foto}}">
+                                                        @if ($gallery->foto)
+                                                        <img style="max-width: 100px; max-height:100px" src="{{url('foto').'/'.$gallery->foto}}">
                                                         @endif
                                                     </td>
-                                                    <td>{{ $karyawan->nip }}</td>
-                                                    <td>{{ $karyawan->nama_karyawan }}</td>
-                                                    <td>{{ $karyawan->jenis_kelamin }}</td>
-                                                    <td>{{ $karyawan->gaji_karyawan }}</td>
-                                                    <td>{{ $karyawan->alamat }}</td>
+                                                    <td>{{ $gallery->no }}</td>
+                                                    <td>{{ $gallery->foto }}</td>
+                                                    <td>{{ $gallery->nama_foto }}</td>
+                                                    <td>{{ $gallery->tempat }}</td>
+                                                    <td>{{ $gallery->caption }}</td>
                                                     <td>
                                                         <a class="btn btn-sm btn-primary"
-                                                            href="{{ url('karyawan/' . $karyawan->nip . '/edit') }}">Edit</a>
+                                                            href="{{ url('/' . $karyawan->nip . '/edit') }}">Edit</a>
                                                         <form
                                                             action="{{ url('karyawan/' . $karyawan->nip) }}"
                                                             method="POST" style="display: inline-block">

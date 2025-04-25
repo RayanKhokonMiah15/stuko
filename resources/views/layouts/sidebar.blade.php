@@ -20,13 +20,13 @@
 
     <li class="nav-item active">
         <a class="nav-link" href="{{route('gallery.index')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-solid fa-images"></i>
             <span>Gallery</span></a>
     </li>
 
     <li class="nav-item active">
         <a class="nav-link" href="{{route('genre.index')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-solid fa-film"></i>
             <span>Genre</span></a>
     </li>
 
