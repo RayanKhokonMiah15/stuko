@@ -67,7 +67,7 @@
                                         <tr>
                                             <th>Nomor</th>
                                             <th>Nama Foto</th>
-                                            <th>Aksi</th>
+                                            <th>Action</th>
                     
                                         </tr>
                                     </thead>

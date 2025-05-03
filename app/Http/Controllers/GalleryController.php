@@ -22,7 +22,6 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
         return view ('gallery.create');
     }
 
@@ -31,7 +30,14 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_foto' => 'required',
+        ]);
+        Gallery::create([
+            'nama_foto' =>  $request->nama_foto,
+        ]);
+
+        return redirect('gallery')->with('sipp','udah upload bro');
     }
 
     /**
@@ -61,8 +67,9 @@ class GalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Gallery $gallery)
+    public function destroy($id)
     {
-        //
+        Gallery::where('kodefoto',$id)->delete();
+        return redirect('gallery.index')->with('sipp','udah upload bro');
     }
 }

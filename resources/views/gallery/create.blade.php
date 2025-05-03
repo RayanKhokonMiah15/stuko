@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button> sampai sini gua </button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </div>
