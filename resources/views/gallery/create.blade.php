@@ -25,10 +25,8 @@
                     <input type="text" class="form-control" name="caption">
                 </div>
             </div>
-            <div class="card-footer">            
-            <button type="submit" class="btn btn-warning">Simpan</button>
- 
-
+            <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </div>

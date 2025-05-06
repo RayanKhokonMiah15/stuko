@@ -57,7 +57,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Gallery</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Gallery</h6>
                         </div>
                         <div class="card-body">
                             <a class="btn btn-warning mb-3" href="{{route('gallery.create')}}">Tambah Data Le</a>
