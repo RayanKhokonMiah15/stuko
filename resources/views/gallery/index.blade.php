@@ -57,7 +57,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Gallery</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Gallery</h6>
                         </div>
                         <div class="card-body">
                             <a class="btn btn-primary mb-3" href="{{route('gallery.create')}}">Tambah Data Le</a>
@@ -67,6 +67,8 @@
                                         <tr>
                                             <th>Nomor</th>
                                             <th>Nama Foto</th>
+                                            <th>tempat</th>
+                                            <th>caption</th>
                                             <th>Action</th>
                     
                                         </tr>
@@ -78,6 +80,8 @@
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$gallery->nama_foto}}</td>
+                                            <td>{{$gallery->tempat}}</td>
+                                            <td>{{$gallery->caption}}</td>
                                             <td>
                                                 <a class="btn btn-primary" href="{{url('gallery/'.$gallery->kodefoto.'/edit')}}">Edit</a>
                                                 <form action="{{url('gallery'."/".$gallery->kodefoto)}}" method="POST" style="display: inline-block" >

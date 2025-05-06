@@ -13,6 +13,12 @@
                     <input type="text" class="form-control" name="nama_foto" value="{{old('nama_foto')}}">
                 </div>
             </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>tempat</label>
+                    <input type="text" class="form-control" name="tempat" value="{{old('tempat')}}">
+                </div>
+            </div>
             <div class="card-footer">
             <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
