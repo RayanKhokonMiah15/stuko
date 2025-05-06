@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form action ="{{route('gallery.store')}}" method="post">
+<form action ="{{route('genre.store')}}" method="post">
     @csrf
     <div class="col-12">
         <div class="card shadow mb-4">
@@ -9,20 +9,14 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label>Nama Foto</label>
-                    <input type="text" class="form-control" name="nama_foto">
+                    <label>Genre</label>
+                    <input type="text" class="form-control" name="genre">
                 </div>
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label>Tempat</label>
-                    <input type="text" class="form-control" name="tempat">
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label>Caption</label>
-                    <input type="text" class="form-control" name="caption">
+                    <label>Deskripsi Genre</label>
+                    <input type="text" class="form-control" name="deskripsi_genre">
                 </div>
             </div>
             <div class="card-footer">            

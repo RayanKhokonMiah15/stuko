@@ -2,7 +2,7 @@
 @section('content')
 
 
-<form action ="{{url('gallery'."/".$data->kodefoto)}}" method="post">
+<form action ="{{url('genre'."/".$data->kodegenre)}}" method="post">
     @csrf
     @method('PUT')
     <div class="col-12">
@@ -12,20 +12,14 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label>Nama Foto</label>
-                    <input type="text" class="form-control" name="nama_foto" value="{{$data->nama_foto}}">
+                    <label>Genre </label>
+                    <input type="text" class="form-control" name="genre" value="{{$data->genre}}">
                 </div>
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label>Tempat</label>
-                    <input type="text" class="form-control" name="tempat" value="{{$data->tempat}}">
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label>Caption</label>
-                    <input type="text" class="form-control" name="caption" value="{{$data->caption}}">
+                    <label>Deskripsi Genre</label>
+                    <input type="text" class="form-control" name="deskripsi_genre" value="{{$data->deskripsi_genre}}">
                 </div>
             </div>
             <div class="card-footer">

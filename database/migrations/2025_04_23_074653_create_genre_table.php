@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('genre', function (Blueprint $table) {
             $table->id('kodegenre');
-            $table->string('Genre');
+            $table->string('genre');
             $table->string('deskripsi_genre');
             $table->timestamps();
         });

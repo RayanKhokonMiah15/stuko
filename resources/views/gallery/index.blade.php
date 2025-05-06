@@ -2,7 +2,7 @@
 @section('content')
 
 @if(session('success'))
-<p class = "alert alert success">{{session('success')}}</p>
+<p class = "alert alert-success">{{session('success')}}</p>
 @endif
 
 <head>
@@ -60,13 +60,15 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Gallery</h6>
                         </div>
                         <div class="card-body">
-                            <a class="btn btn-primary mb-3" href="{{route('gallery.create')}}">Tambah Data Le</a>
+                            <a class="btn btn-warning mb-3" href="{{route('gallery.create')}}">Tambah Data Le</a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Nomor</th>
                                             <th>Nama Foto</th>
+                                            <th>Tempat</th>
+                                            <th>Caption</th>
                                             <th>Action</th>
                     
                                         </tr>
@@ -78,8 +80,10 @@
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$gallery->nama_foto}}</td>
+                                            <td>{{$gallery->tempat}}</td>
+                                            <td>{{$gallery->caption}}</td>
                                             <td>
-                                                <a class="btn btn-primary" href="{{url('gallery/'.$gallery->kodefoto.'/edit')}}">Edit</a>
+                                                <a class="btn btn-warning" href="{{url('gallery/'.$gallery->kodefoto.'/edit')}}">Edit</a>
                                                 <form action="{{url('gallery'."/".$gallery->kodefoto)}}" method="POST" style="display: inline-block" >
                                                     @csrf
                                                     @method('Delete')

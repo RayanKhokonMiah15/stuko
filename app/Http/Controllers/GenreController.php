@@ -23,6 +23,7 @@ class GenreController extends Controller
     public function create()
     {
         //
+        return view('genre.create');
     }
 
     /**
@@ -31,6 +32,15 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'genre' => 'required',
+        ]);
+        Genre::create([
+            'genre' =>$request->genre,
+            'deskripsi_genre' =>$request->deskripsi_genre
+        ]);
+
+        return redirect('genre')->with('sipp','udah upload bro');
     }
 
     /**
@@ -39,29 +49,44 @@ class GenreController extends Controller
     public function show(Genre $genre)
     {
         //
+      
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Genre $genre)
+    public function edit($id)
     {
         //
+        $data = Genre::where('kodegenre',$id)->first();
+        return view('genre.edit')->with('data',$data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Genre $genre)
+    public function update(Request $request,$id)
     {
         //
+        $request->validate([
+            'genre' => 'required',
+        ]);
+        $data = ([
+           'genre' =>$request->genre,
+            'deskripsi_genre' =>$request->deskripsi_genre
+        ]);
+
+        Genre::where ('kodegenre',$id)->update($data);
+        return redirect('genre')->with('sipp','udah update bro');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Genre $genre)
+    public function destroy($kodegenre)
     {
         //
+         Genre::where('kodegenre',$kodegenre)->delete();
+        return redirect('genre')->with('sipp','udah di hapus bro');
     }
 }
