@@ -67,6 +67,7 @@
                                         <tr>
                                             <th>Nomor</th>
                                             <th>Nama Foto</th>
+                                            <th>Genre</th>
                                             <th>Tempat</th>
                                             <th>Caption</th>
                                             <th>Action</th>
@@ -80,6 +81,7 @@
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$gallery->nama_foto}}</td>
+                                            <td>{{$gallery->genre['Genre']}}</td>
                                             <td>{{$gallery->tempat}}</td>
                                             <td>{{$gallery->caption}}</td>
                                             <td>

@@ -12,4 +12,9 @@ class Genre extends Model
     protected $table ='genre';
     protected $primarykey = 'kodegenre';
     protected $fillable = ['genre', 'deskripsi_genre'];
+
+    public function Gallery() {
+        
+        return $this->hasMany('App\Models\Gallery');
+    }
 }

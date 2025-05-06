@@ -12,4 +12,8 @@ class Gallery extends Model
     protected $primaryKey = 'kodefoto';
     protected $fillable = ['nama_foto','tempat', 'caption'];
 
+    public function Genre() {
+        
+        return $this->belongsTo('App\Models\Genre');
+    }
 }
