@@ -34,7 +34,7 @@ class GalleryController extends Controller
             'nama_foto' => 'required',
         ]);
         Gallery::create([
-            'nama_foto' =>  $request->nama_foto,
+            'nama_foto' =>$request->nama_foto,
         ]);
 
         return redirect('gallery')->with('sipp','udah upload bro');
@@ -67,9 +67,9 @@ class GalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($kodefoto)
     {
-        Gallery::where('kodefoto',$id)->delete();
-        return redirect('gallery.index')->with('sipp','udah upload bro');
+        Gallery::where('kodefoto',$kodefoto)->delete();
+        return redirect('gallery')->with('sipp','udah upload bro');
     }
 }

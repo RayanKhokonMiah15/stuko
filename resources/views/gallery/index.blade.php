@@ -79,11 +79,11 @@
                                             <td>{{$no++}}</td>
                                             <td>{{$gallery->nama_foto}}</td>
                                             <td>
-                                                <a class="btn btn-primary" href="{{url('gallery/'.$gallery->nama_foto.'/edit')}}">Edit</a>
-                                                <form action="{{url('gallery'.$gallery->nama_foto)}}" method="POST" style="display: inline-block">
+                                                <a class="btn btn-primary" href="{{url('gallery/'.$gallery->kodefoto.'/edit')}}">Edit</a>
+                                                <form action="{{url('gallery'."/".$gallery->kodefoto)}}" method="POST" style="display: inline-block" >
                                                     @csrf
                                                     @method('Delete')
-                                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Ente Yakin Rek Nga dilet cik?')">Dilet</button>
+                                                    <button class="btn btn-sm btn-danger" onclick="return confirm ('Ente Yakin Rek Nga dilet cik?')">Dilet</button>
                                                 </form>
                                             </td>
                                         </tr>
