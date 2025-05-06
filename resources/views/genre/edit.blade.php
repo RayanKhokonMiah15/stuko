@@ -2,7 +2,7 @@
 @section('content')
 
 
-<form action ="{{url('genre'."/".$data->kodegenre)}}" method="post">
+<form action ="{{url('genre'."/".$data->id)}}" method="post">
     @csrf
     @method('PUT')
     <div class="col-12">

@@ -81,8 +81,8 @@
                                             <td>{{$genre->genre}}</td>
                                             <td>{{$genre->deskripsi_genre}}</td>
                                             <td>
-                                                <a class="btn btn-primary" href="{{url('genre/'.$genre->kodegenre.'/edit')}}">Edit</a>
-                                                <form action="{{url('genre'."/".$genre->kodegenre)}}" method="POST" style="display: inline-block" >
+                                                <a class="btn btn-primary" href="{{url('genre/'.$genre->id.'/edit')}}">Edit</a>
+                                                <form action="{{url('genre'."/".$genre->id)}}" method="POST" style="display: inline-block" >
                                                     @csrf
                                                     @method('Delete')
                                                     <button class="btn btn-sm btn-danger" onclick="return confirm ('Ente Yakin Rek Nga dilet cik?')">Dilet</button>

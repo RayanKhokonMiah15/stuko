@@ -77,16 +77,16 @@
                                    
                                     <tbody>
                                         <?php $no = 1 ?>
-                                        @foreach ($gallery as $gallery)
+                                        @foreach ($gallery as $dept)
                                         <tr>
                                             <td>{{$no++}}</td>
-                                            <td>{{$gallery->nama_foto}}</td>
-                                            <td>{{$gallery->genre['Genre']}}</td>
-                                            <td>{{$gallery->tempat}}</td>
-                                            <td>{{$gallery->caption}}</td>
+                                            <td>{{$dept->nama_foto}}</td>
+                                            <td>{{$dept->genre->genre ?? '-' }}</td>
+                                            <td>{{$dept->tempat}}</td>
+                                            <td>{{$dept->caption}}</td>
                                             <td>
-                                                <a class="btn btn-warning" href="{{url('gallery/'.$gallery->kodefoto.'/edit')}}">Edit</a>
-                                                <form action="{{url('gallery'."/".$gallery->kodefoto)}}" method="POST" style="display: inline-block" >
+                                                <a class="btn btn-warning" href="{{url('gallery/'.$gallery->id.'/edit')}}">Edit</a>
+                                                <form action="{{url('gallery'."/".$gallery->id)}}" method="POST" style="display: inline-block" >
                                                     @csrf
                                                     @method('Delete')
                                                     <button class="btn btn-sm btn-danger" onclick="return confirm ('Ente Yakin Rek Nga dilet cik?')">Dilet</button>

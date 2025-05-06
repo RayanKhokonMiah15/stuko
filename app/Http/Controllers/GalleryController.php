@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use App\Models\Genre;
 
 class GalleryController extends Controller
 {
@@ -22,7 +23,9 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view ('gallery.create');
+        //
+        $genre = Genre::all();
+        return view('gallery.create',['genre'=>$genre]);
     }
 
     /**
@@ -35,6 +38,7 @@ class GalleryController extends Controller
         ]);
         Gallery::create([
             'nama_foto' =>$request->nama_foto,
+            'genre_id' =>$request->genre_id,
             'tempat' =>$request->tempat,
             'caption' =>$request->caption
         ]);
@@ -56,7 +60,7 @@ class GalleryController extends Controller
     public function edit($id)
     {
         //
-        $data = Gallery::where('kodefoto',$id)->first();
+        $data = Gallery::where('id',$id)->first();
         return view('gallery.edit')->with('data',$data);
     }
 
@@ -75,16 +79,16 @@ class GalleryController extends Controller
             'caption' =>$request->caption
         ]);
 
-        Gallery::where ('kodefoto',$id)->update($data);
+        Gallery::where ('id',$id)->update($data);
         return redirect('gallery')->with('sipp','udah update bro');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($kodefoto)
+    public function destroy($id)
     {
-        Gallery::where('kodefoto',$kodefoto)->delete();
+        Gallery::where('id',$id)->delete();
         return redirect('gallery')->with('sipp','udah di hapus bro');
     }
 }

@@ -58,7 +58,7 @@ class GenreController extends Controller
     public function edit($id)
     {
         //
-        $data = Genre::where('kodegenre',$id)->first();
+        $data = Genre::where('id',$id)->first();
         return view('genre.edit')->with('data',$data);
     }
 
@@ -76,17 +76,17 @@ class GenreController extends Controller
             'deskripsi_genre' =>$request->deskripsi_genre
         ]);
 
-        Genre::where ('kodegenre',$id)->update($data);
+        Genre::where ('id',$id)->update($data);
         return redirect('genre')->with('sipp','udah update bro');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($kodegenre)
+    public function destroy($id)
     {
         //
-         Genre::where('kodegenre',$kodegenre)->delete();
+         Genre::where('id',$id)->delete();
         return redirect('genre')->with('sipp','udah di hapus bro');
     }
 }
