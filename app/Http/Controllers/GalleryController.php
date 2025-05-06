@@ -51,17 +51,28 @@ class GalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Gallery $gallery)
+    public function edit($id)
     {
         //
+        $data = Gallery::where('kodefoto',$id)->first();
+        return view('gallery.edit')->with('data',$data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Gallery $gallery)
+    public function update(Request $request,$id)
     {
         //
+        $request->validate([
+            'nama_foto' => 'required',
+        ]);
+        $data = ([
+            'nama_foto' =>$request->nama_foto,
+        ]);
+
+        Gallery::where ('kodefoto',$id)->update($data);
+        return redirect('gallery')->with('sipp','udah update bro');
     }
 
     /**
@@ -70,6 +81,6 @@ class GalleryController extends Controller
     public function destroy($kodefoto)
     {
         Gallery::where('kodefoto',$kodefoto)->delete();
-        return redirect('gallery')->with('sipp','udah upload bro');
+        return redirect('gallery')->with('sipp','udah di hapus bro');
     }
 }
