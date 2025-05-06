@@ -16,6 +16,18 @@
                     <input type="text" class="form-control" name="nama_foto" value="{{$data->nama_foto}}">
                 </div>
             </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>tempat</label>
+                    <input type="text" class="form-control" name="tempat" value="{{$data->tempat}}">
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>caption</label>
+                    <input type="text" class="form-control" name="caption" value="{{$data->caption}}">
+                </div>
+            </div>
             <div class="card-footer">
             <button type="submit" class="btn btn-primary">Simpan</button>
             </div>

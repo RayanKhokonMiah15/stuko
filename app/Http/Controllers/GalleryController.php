@@ -34,7 +34,9 @@ class GalleryController extends Controller
             'nama_foto' => 'required',
         ]);
         Gallery::create([
-            'nama_foto' =>$request->nama_foto,
+            'nama_foto' => $request->nama_foto,
+            'tempat' => $request->tempat,
+            'caption' => $request->caption
         ]);
 
         return redirect('gallery')->with('sipp','udah upload bro');
@@ -69,6 +71,8 @@ class GalleryController extends Controller
         ]);
         $data = ([
             'nama_foto' =>$request->nama_foto,
+            'tempat' => $request->tempat,
+            'caption' => $request->caption
         ]);
 
         Gallery::where ('kodefoto',$id)->update($data);
