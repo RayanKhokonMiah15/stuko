@@ -85,8 +85,8 @@
                                             <td>{{$dept->tempat}}</td>
                                             <td>{{$dept->caption}}</td>
                                             <td>
-                                                <a class="btn btn-warning" href="{{url('gallery/'.$gallery->id.'/edit')}}">Edit</a>
-                                                <form action="{{url('gallery'."/".$gallery->id)}}" method="POST" style="display: inline-block" >
+                                                <a class="btn btn-warning" href="{{url('gallery/'.$dept->id.'/edit')}}">Edit</a>
+                                                <form action="{{url('gallery'."/".$dept->id)}}" method="POST" style="display: inline-block" >
                                                     @csrf
                                                     @method('Delete')
                                                     <button class="btn btn-sm btn-danger" onclick="return confirm ('Ente Yakin Rek Nga dilet cik?')">Dilet</button>
