@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
-use Illuminate\Http\Request;
 use App\Models\Genre;
+use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
@@ -13,9 +13,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
         $gallery = Gallery::all();
-        return view('gallery.index',['gallery'=>$gallery]);
+        return view('gallery.index', ['gallery' => $gallery]);
     }
 
     /**
@@ -23,9 +22,8 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
         $genre = Genre::all();
-        return view('gallery.create',['genre'=>$genre]);
+        return view('gallery.create', ['genre' => $genre]);
     }
 
     /**
@@ -35,15 +33,36 @@ class GalleryController extends Controller
     {
         $request->validate([
             'nama_foto' => 'required',
-        ]);
-        Gallery::create([
-            'nama_foto' =>$request->nama_foto,
-            'genre_id' =>$request->genre_id,
-            'tempat' =>$request->tempat,
-            'caption' =>$request->caption
+            'tempat' => 'required',
+            'caption' => 'required',
+            'foto' => 'required|mimes:jpeg,jpg,png,gif',
+            'genre_id' => 'required|exists:genre,id'
+        ], [
+            'nama_foto.required' => 'Nama Foto wajib diisi.',
+            'tempat.required' => 'Tempat wajib diisi.',
+            'caption.required' => 'Caption wajib diisi.',
+            'foto.required' => 'Foto wajib diisi.',
+            'foto.mimes' => 'Foto harus berekstensi jpg, jpeg, png, atau gif.',
+            'genre_id.required' => 'Genre wajib dipilih.',
+            'genre_id.exists' => 'Genre tidak valid.'
         ]);
 
-        return redirect('gallery')->with('sipp','udah upload bro');
+        $foto_file = $request->file('foto');
+        $foto_ekstensi = $foto_file->extension();
+        $foto_nama = date('ymdhis') . "." . $foto_ekstensi;
+        $foto_file->move(public_path('foto'), $foto_nama);
+
+        $data = [
+            'nama_foto' => $request->input('nama_foto'),
+            'tempat' => $request->input('tempat'),
+            'caption' => $request->input('caption'),
+            'foto' => $foto_nama,
+            'genre_id' => $request->input('genre_id')
+        ];
+
+        Gallery::create($data);
+
+        return redirect('gallery')->with('sipp', 'Foto berhasil diupload!');
     }
 
     /**
@@ -51,7 +70,7 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
-        //
+        return view('gallery.show', ['gallery' => $gallery]);
     }
 
     /**
@@ -59,28 +78,42 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        //
-        $data = Gallery::where('id',$id)->first();
-        return view('gallery.edit')->with('data',$data);
+        $data = Gallery::findOrFail($id);
+        $genre = Genre::all();
+        return view('gallery.edit', compact('data', 'genre'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        //
         $request->validate([
             'nama_foto' => 'required',
-        ]);
-        $data = ([
-            'nama_foto' =>$request->nama_foto,
-            'tempat' =>$request->tempat,
-            'caption' =>$request->caption
+            'tempat' => 'required',
+            'caption' => 'required',
+            'genre_id' => 'required|exists:genre,id'
         ]);
 
-        Gallery::where ('id',$id)->update($data);
-        return redirect('gallery')->with('sipp','udah update bro');
+        $data = [
+            'nama_foto' => $request->input('nama_foto'),
+            'tempat' => $request->input('tempat'),
+            'caption' => $request->input('caption'),
+            'genre_id' => $request->input('genre_id')
+        ];
+
+        // Jika user upload foto baru
+        if ($request->hasFile('foto')) {
+            $foto_file = $request->file('foto');
+            $foto_ekstensi = $foto_file->extension();
+            $foto_nama = date('ymdhis') . "." . $foto_ekstensi;
+            $foto_file->move(public_path('foto'), $foto_nama);
+            $data['foto'] = $foto_nama;
+        }
+
+        Gallery::where('id', $id)->update($data);
+
+        return redirect('gallery')->with('sipp', 'Data berhasil diupdate!');
     }
 
     /**
@@ -88,7 +121,7 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        Gallery::where('id',$id)->delete();
-        return redirect('gallery')->with('sipp','udah di hapus bro');
+        Gallery::where('id', $id)->delete();
+        return redirect('gallery')->with('sipp', 'Data berhasil dihapus!');
     }
 }

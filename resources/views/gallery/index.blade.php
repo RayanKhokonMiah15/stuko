@@ -81,6 +81,7 @@
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$dept->nama_foto}}</td>
+                                            <td>{{$dept->foto}}</td>
                                             <td>{{$dept->genre->genre ?? '-' }}</td>
                                             <td>{{$dept->tempat}}</td>
                                             <td>{{$dept->caption}}</td>

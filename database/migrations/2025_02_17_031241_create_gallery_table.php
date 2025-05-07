@@ -10,16 +10,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('gallery', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('nama_foto');
-            $table->integer('genre_id');
-            $table->string('tempat');
-            $table->string('caption');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('gallery', function (Blueprint $table) {
+        $table->id('id');
+        $table->string('nama_foto');
+        $table->foreignId('genre_id')->nullable()->constrained('genre')->onDelete('cascade');  // Menambahkan nullable()
+        $table->string('tempat');
+        $table->string('caption');
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
