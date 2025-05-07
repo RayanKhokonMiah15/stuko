@@ -67,6 +67,7 @@
                                         <tr>
                                             <th>Nomor</th>
                                             <th>Nama Foto</th>
+                                            <th>Foto</th>
                                             <th>Genre</th>
                                             <th>Tempat</th>
                                             <th>Caption</th>
@@ -81,7 +82,13 @@
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$dept->nama_foto}}</td>
-                                            <td>{{$dept->foto}}</td>
+
+                                            <td>
+                                                @if ($dept->foto)
+                                                <img style="max-widht:100px; max-height:100px" src="{{url('foto').'/'.$dept->foto}}">
+                                                @endif
+                                            </td>
+                                            
                                             <td>{{$dept->genre->genre ?? '-' }}</td>
                                             <td>{{$dept->tempat}}</td>
                                             <td>{{$dept->caption}}</td>
