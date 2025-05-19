@@ -10,9 +10,9 @@ class Gallery extends Model
     use HasFactory;
     protected $table ='gallery';
     protected $primaryKey = 'id';
-    protected $fillable = ['nama_foto','genre_id','tempat', 'caption'];
+    protected $fillable = ['nama_foto','foto','genre_id','tempat', 'caption'];
 
     public function Genre() {
-        return $this->belongsTo('App\Models\Genre');
+        return $this->belongsTo(Genre::class, 'genre_id');
     }
 }

@@ -13,6 +13,6 @@ class Genre extends Model
     protected $fillable = ['genre', 'deskripsi_genre'];
 
     public function Gallery() {
-        return $this->hasMany('App\Models\Gallery');
+        return $this->hasMany(Gallery::class, 'genre_id');
     }
 }
