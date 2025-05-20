@@ -11,7 +11,8 @@ class FrontendController extends Controller
     // Halaman utama (index) - tampilkan gallery dan genre
     public function index(): View
     {
-        $galleries = Gallery::all();
+        // Ambil semua data gallery dan genre
+        $galleries = Gallery::with('genre')->get(); // Gunakan eager loading untuk relasi
         $genres = Genre::all();
 
         return view('frontend.index', compact('galleries', 'genres'));
@@ -23,7 +24,7 @@ class FrontendController extends Controller
         return view('frontend.about');
     }
 
-    //Halaman testmoni
+    // Halaman testimoni
     public function testimoni(): View
     {
         return view('frontend.testimoni');
@@ -38,14 +39,16 @@ class FrontendController extends Controller
     // Halaman work
     public function work(): View
     {
-        $galleries = Gallery::all();
+        // Ambil semua data gallery dengan relasi genre
+        $galleries = Gallery::with('genre')->get();
         return view('frontend.work', compact('galleries'));
     }
 
     // Halaman single dengan parameter ID
     public function single($id): View
     {
-        $gallery = Gallery::findOrFail($id);
+        // Cari galeri berdasarkan ID, termasuk relasi genre
+        $gallery = Gallery::with('genre')->findOrFail($id);
         return view('frontend.single', compact('gallery'));
     }
 }

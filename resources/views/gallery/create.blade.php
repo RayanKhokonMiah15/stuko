@@ -45,9 +45,4 @@
              <button type="submit" class="btn btn-warning">Simpan</button>
         </div>
     </div>
-
-
-
-
-
 @endsection

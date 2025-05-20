@@ -31,3 +31,6 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/testimoni', 'testimoni')->name('frontend.testimoni');
     Route::get('/single/{id}', 'single')->name('frontend.single');
 });
+
+//route relasi admin-frontend
+Route::get('/home', [FrontendController::class, 'index'])->name('frontend.index');

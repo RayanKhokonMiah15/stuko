@@ -85,7 +85,7 @@
 
                                             <td>
                                                 @if ($dept->foto)
-                                                <img style="max-widht:100px; max-height:100px" src="{{url('foto').'/'.$dept->foto}}">
+                                                <img style="max-width:100px; max-height:100px" src="{{url('foto').'/'.$dept->foto}}">
                                                 @endif
                                             </td>
                                             
