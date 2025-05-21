@@ -115,18 +115,85 @@ figure {
 }
 
 .fh5co-projects-feed, .footer-content {
-  margin: 100 auto;
+  margin: 0 auto;
   max-width: 1400px;
+}
+
+/* Responsive gallery grid improvements */
+.fh5co-projects-feed {
+  margin: 0 auto;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 2px; /* lebih rapat */
+  padding: 2px; /* lebih kecil */
+}
+
+.fh5co-project {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  margin: 0; /* hilangkan margin */
+  float: none;
+}
+
+.fh5co-project img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+@media (max-width: 1024px) {
+  .fh5co-projects-feed {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1px;
+    padding: 2px;
+  }
+  .fh5co-project img {
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fh5co-projects-feed {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1px;
+    padding: 1px;
+  }
+  .fh5co-project img {
+    height: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fh5co-projects-feed {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    padding: 1px;
+  }
+  .fh5co-project img {
+    height: 70px;
+  }
+  .fh5co-project .caption-box,
+  .photo-header {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  .fh5co-project .caption-box {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+  }
 }
 
 .fh5co-projects-feed .fh5co-project {
   float: left;
-  margin: 100px 100px 100px;
+  margin: 0; /* hilangkan margin antar foto */
   width: 290px;
 }
 @media screen and (max-width: 480px) {
   .fh5co-projects-feed .fh5co-project {
-    margin: 10px 10px 10px;
+    margin: 0; /* hilangkan margin juga di mobile */
   }
 }
 .fh5co-projects-feed .fh5co-project > a {
