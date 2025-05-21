@@ -4,7 +4,7 @@
 		<header id="fh5co-header" role="banner">
 			<div class="container text-center">
 				<div id="fh5co-logo">
-					<a href="index.html"><img src="images/logo.png" alt="Present Free HTML5 Bootstrap Template"></a>
+					<a href="index.html"><img src="images/logo.png" alt="RRStudio"></a>
 				</div>
 				<nav>
 					<ul>

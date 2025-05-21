@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\CommentController;
 
 // Dashboard (default)
 Route::get('/', function () {
@@ -34,3 +35,6 @@ Route::controller(FrontendController::class)->group(function () {
 
 //route relasi admin-frontend
 Route::get('/home', [FrontendController::class, 'index'])->name('frontend.index');
+
+// Route untuk komentar
+Route::post('/comment/{gallery_id}', [CommentController::class, 'store'])->name('frontend.comment');

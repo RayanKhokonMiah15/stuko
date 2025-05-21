@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 use App\Models\Gallery;
 use App\Models\Genre;
 
 class FrontendController extends Controller
 {
     // Halaman utama (index) - tampilkan gallery dan genre
-    public function index(): View
+    public function index(Request $request): View
     {
-        // Ambil semua data gallery dan genre
-        $galleries = Gallery::with('genre')->get(); // Gunakan eager loading untuk relasi
+        $genreId = $request->query('genre');
+        $query = Gallery::with(['genre', 'comments']);
+        if ($genreId) {
+            $query->where('genre_id', $genreId);
+        }
+        $galleries = $query->get();
         $genres = Genre::all();
 
         return view('frontend.index', compact('galleries', 'genres'));
@@ -47,8 +52,8 @@ class FrontendController extends Controller
     // Halaman single dengan parameter ID
     public function single($id): View
     {
-        // Cari galeri berdasarkan ID, termasuk relasi genre
-        $gallery = Gallery::with('genre')->findOrFail($id);
+        // Cari galeri berdasarkan ID, termasuk relasi genre dan comments
+        $gallery = Gallery::with(['genre', 'comments'])->findOrFail($id);
         return view('frontend.single', compact('gallery'));
     }
 }

@@ -1,168 +1,243 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-		<header id="fh5co-header" role="banner">
-			<div class="container text-center">
-				<div id="fh5co-logo">
-					<a href="index.html"><img src="images/logo.png" alt="Present Free HTML5 Bootstrap Template"></a>
-				</div>
-				<nav>
-					<ul>
-						<li><a href="{{ route('frontend.about') }}">About</a></li>
-						<li class="active"><a href="{{ route('fronted.work') }}">Work</a></li>
-						<li><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
-						<li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4">Instagram</a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		<!-- END #fh5co-header -->
+    <header id="fh5co-header" role="banner">
+        <div class="container text-center">
+            <div id="fh5co-logo">
+                <a href="{{ route('frontend.index') }}">
+                    <img src="{{ asset('images/logo.png') }}" alt="RRStudio">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ route('frontend.about') }}">About</a></li>
+                    <li class="active"><a href="{{ route('frontend.work') }}">Work</a></li>
+                    <li><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
+                    <li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4">Instagram</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-		<div class="page-content">
-			<h1 class="mb0">Project title</h1>
-			<div class="meta"><span><a href="#">Packaging</a>, <a href="#">Illustration</a></span></div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quaerat nostrum, neque cum, quidem inventore consequatur sunt optio sint! Veritatis maiores recusandae dolores nihil cumque, eaque eius obcaecati voluptatum necessitatibus.</p>
-			<p><img src="images/img_large_1.jpg" alt="Free HTML5 by FreeHTML5.co"></p>
-			<p><img src="images/img_large_2.jpg" alt="Free HTML5 by FreeHTML5.co"></p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi saepe officia, consectetur praesentium minus reiciendis, accusamus consequuntur iusto ad illum quibusdam commodi facere tenetur. Culpa quia laborum quam, sint laboriosam delectus veniam, at molestiae magnam iusto similique dolorem ea doloremque!</p>
-			<p><img src="images/img_large_3.jpg" alt="Free HTML5 by FreeHTML5.co"></p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi saepe officia, consectetur praesentium minus reiciendis, accusamus consequuntur iusto ad illum quibusdam commodi facere tenetur. Culpa quia laborum quam, sint laboriosam delectus veniam, at molestiae magnam iusto similique dolorem ea doloremque!</p>
-			<p>Ullam recusandae error odit eveniet soluta temporibus quis mollitia dignissimos quasi, magni culpa sed, minima atque quae a vitae dolores, illo cum sint! Quaerat rem incidunt nihil laborum nulla placeat soluta, fugit dolor aperiam facere itaque laboriosam error ratione praesentium.</p>
-		</div>
+    <style>
+        .single-photo-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            max-width: 700px;
+            margin: 32px auto 0 auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            overflow: hidden;
+            padding: 0;
+        }
+        body.dark-mode .single-photo-flex {
+            background: #23272b;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.30);
+        }
+        .single-photo-img {
+            width: 260px;
+            min-width: 180px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 14px 0 0 14px;
+            object-fit: cover;
+        }
+        .single-caption-box {
+            flex: 1 1 0;
+            padding: 24px 24px 18px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .single-caption-box h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.25em;
+            font-weight: 700;
+        }
+        .single-caption-box p {
+            margin: 0 0 10px 0;
+            font-size: 1em;
+            color: #666;
+        }
+        body.dark-mode .single-caption-box p {
+            color: #bbb;
+        }
+        .single-genre-badge {
+            margin-top: 10px;
+            display: inline-block;
+            background: #f0f0f0;
+            color: #333;
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.95em;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        body.dark-mode .single-genre-badge {
+            background: #23272b;
+            color: #e0e0e0;
+        }
+        .single-comment-section {
+            max-width: 700px;
+            margin: 28px auto 0 auto;
+            background: #fafbfc;
+            border-radius: 10px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+            padding: 18px 18px 10px 18px;
+        }
+        body.dark-mode .single-comment-section {
+            background: #23272b;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.18);
+        }
+        .single-comment-section h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.08em;
+            font-weight: 700;
+        }
+        .single-comment-add-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 16px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 18px;
+            transition: background 0.2s;
+        }
+        .single-comment-add-btn:hover {
+            background: #22577a;
+        }
+        .single-comment-add-btn i {
+            font-size: 1.2em;
+        }
+        .single-comment-list {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .single-comment-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: none;
+            border-radius: 0;
+            padding: 0;
+            font-size: 1em;
+            border-bottom: 1px solid #ececec;
+            padding-bottom: 8px;
+        }
+        .single-comment-item:last-child {
+            border-bottom: none;
+        }
+        .single-comment-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #555;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+        body.dark-mode .single-comment-avatar {
+            background: #23272b;
+            color: #e0e0e0;
+        }
+        .single-comment-content {
+            flex: 1;
+        }
+        .single-comment-author {
+            font-weight: 600;
+            font-size: 0.88em;
+            margin-bottom: 2px;
+            color: #222;
+            opacity: 0.85;
+        }
+        body.dark-mode .single-comment-author {
+            color: #e0e0e0;
+        }
+        .single-comment-text {
+            font-size: 0.97em;
+            color: #444;
+            line-height: 1.5;
+        }
+        body.dark-mode .single-comment-text {
+            color: #bbb;
+        }
+        @media (max-width: 700px) {
+            .single-photo-flex {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 0 18px 0;
+            }
+            .single-photo-img {
+                border-radius: 14px 14px 0 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            .single-caption-box {
+                padding: 18px 18px 8px 18px;
+            }
+        }
+    </style>
 
-		<div class="container-fluid">
-			<div id="fh5co-projects-feed" class="fh5co-projects-feed clearfix masonry">
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_20.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_19.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_3.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_4.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_5.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_6.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_7.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_8.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_9.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_10.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_11.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_12.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_13.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_14.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_15.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_16.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_17.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_18.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_19.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-				<div class="fh5co-project masonry-brick">
-					<a href="single.html">
-						<img src="images/img_20.jpg" alt="Free HTML5 by FreeHTML5.co">
-						<h2>Your Project Title Here</h2>
-					</a>
-				</div>
-			</div>
-			<!--END .fh5co-projects-feed-->
-		</div>
-		<!-- END .container-fluid -->
+    <div class="single-photo-flex">
+        <img src="{{ asset('storage/' . $gallery->foto) }}" alt="{{ $gallery->caption }}" class="single-photo-img">
+        <div class="single-caption-box" style="position:relative;">
+            @if($gallery->genre?->genre)
+                <span class="single-genre-badge" style="position:absolute; left:0; top:12px; margin:0; z-index:2;">{{ $gallery->genre->genre }}</span>
+            @endif
+            <h2 style="margin-top:38px;">{{ $gallery->caption }}</h2>
+            @if(!empty($gallery->deskripsi))
+                <p style="color:#888; font-size:0.97em; line-height:1.5; margin:0 0 6px 0; max-width:320px; white-space:pre-line; overflow:hidden; text-overflow:ellipsis;">{{ Str::limit(strip_tags($gallery->deskripsi), 120) }}</p>
+            @endif
+        </div>
+    </div>
+    <div class="single-comment-section">
+        <h4 style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+            Komentar
+            <a href="{{ route('frontend.comment.form', $gallery->id) }}" class="single-comment-add-btn">
+                <i class="fa fa-comment"></i> Tambah Komentar
+            </a>
+        </h4>
+        @if(isset($gallery->comments) && $gallery->comments->count())
+            <div class="single-comment-list">
+                @foreach($gallery->comments as $comment)
+                    <div class="single-comment-item">
+                        <div class="single-comment-avatar">
+                            {{ strtoupper(substr($comment->nama,0,1)) }}
+                        </div>
+                        <div class="single-comment-content">
+                            <div class="single-comment-author">{{ $comment->nama }}</div>
+                            <div class="single-comment-text">{{ $comment->isi }}</div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="single-no-comment">Belum ada komentar.</div>
+        @endif
+    </div>
 
-		<footer id="fh5co-footer" role="contentinfo">
-			<div class="container-fluid">
-				<div class="footer-content">
-					<div class="copyright"><small>&copy; 2025 Present. All Rights Reserved. <br>Designed by <a>RRStudio</a></div>
-				</div>
-			</div>
-		</footer>
-		<!-- END #fh5co-footer -->
+    <footer id="fh5co-footer" role="contentinfo">
+        <div class="container-fluid">
+            <div class="footer-content">
+                <div class="copyright">
+                    <small>&copy; {{ date('Y') }} Present. All Rights Reserved. <br>Designed by <a href="#">RRStudio</a></small>
+                </div>
+            </div>
+        </div>
+    </footer>
 @endsection

@@ -15,4 +15,9 @@ class Gallery extends Model
     public function Genre() {
         return $this->belongsTo(Genre::class, 'genre_id');
     }
+    
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\Comment::class, 'gallery_id');
+    }
 }
