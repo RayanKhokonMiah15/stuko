@@ -42,11 +42,12 @@ class FrontendController extends Controller
     }
 
     // Halaman work
-    public function work(): View
+    public function work(Request $request): View
     {
         // Ambil semua data gallery dengan relasi genre
         $galleries = Gallery::with('genre')->get();
-        return view('frontend.work', compact('galleries'));
+        $genres = \App\Models\Genre::all();
+        return view('frontend.work', compact('galleries', 'genres'));
     }
 
     // Halaman single dengan parameter ID

@@ -223,6 +223,11 @@
                             <div class="single-comment-author">{{ $comment->nama }}</div>
                             <div class="single-comment-text">{{ $comment->isi }}</div>
                         </div>
+                        <form action="{{ route('frontend.comment.delete', $comment->id) }}" method="POST" style="margin-left:10px;" class="form-delete-comment">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger" style="padding:4px 10px;font-size:0.93em; border-radius:6px; margin-top:2px;">Hapus</button>
+                        </form>
                     </div>
                 @endforeach
             </div>
@@ -240,4 +245,41 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // SweetAlert untuk hapus komentar
+        document.querySelectorAll('.form-delete-comment').forEach(function(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Hapus komentar?',
+                    text: 'Komentar akan dihapus secara permanen.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+        // SweetAlert untuk sukses tambah komentar
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 1800,
+                showConfirmButton: false
+            });
+        @endif
+    });
+    </script>
 @endsection

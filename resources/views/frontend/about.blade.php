@@ -21,7 +21,7 @@
 
 		<div class="page-content">
 			<h1 class="mb0">About Us</h1>
-			<div class="meta"><span>Fun project</span><span> experimental site</span></div>
+			<div class="meta"><span>Fun project</span><span> experimental site | AI Spesialist</span></div>
 			<p>Web gallery ini dibuat sebagai proyek kolaborasi kami yang memiliki minat besar dalam seni dan teknologi. Kami menciptakan ruang digital ini untuk menampilkan karya-karya visual yang inspiratif, mulai dari fotografi hingga desain grafis. Melalui web ini, kami berharap bisa berbagi keindahan, ide, dan kreativitas kepada siapa saja yang berkunjung. Terima kasih telah menjadi bagian dari perjalanan kami!</p>
 			<p class="text-center"><img src="images/HD wallpaper_ Anime, Violet Evergarden, Violet Evergarden (Character), representation.jpg" alt="Free HTML5 by FreeHTML5.co"></p>
 			<p>Di web ini tidak banyak yang disajikan, hanya berisi hasil karya kami dalam bidang desain serta fotografi. Mungkin web ini cukup membosankan, maka dari itu tidak perlu berekspetasi tinggi soal fitur-fitur di web kami.

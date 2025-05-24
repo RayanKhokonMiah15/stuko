@@ -38,3 +38,5 @@ Route::get('/home', [FrontendController::class, 'index'])->name('frontend.index'
 
 // Route untuk komentar
 Route::post('/comment/{gallery_id}', [CommentController::class, 'store'])->name('frontend.comment');
+Route::get('/comment/form/{gallery_id}', [CommentController::class, 'form'])->name('frontend.comment.form');
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('frontend.comment.delete');

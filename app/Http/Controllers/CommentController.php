@@ -29,4 +29,12 @@ class CommentController extends Controller
         $gallery = Gallery::findOrFail($gallery_id);
         return view('frontend.comment_form', compact('gallery'));
     }
+
+    public function destroy($commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+        $galleryId = $comment->gallery_id;
+        $comment->delete();
+        return redirect()->route('frontend.single', $galleryId)->with('success', 'Komentar berhasil dihapus!');
+    }
 }

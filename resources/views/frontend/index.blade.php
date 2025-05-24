@@ -337,76 +337,77 @@
         /* Hide old select */
         form[method='GET'][action=''] .custom-select-wrapper { display: none !important; }
 
-        /* Dropbar Genre Modern */
-        .genre-bar-wrapper {
-            width: 100%;
-            max-width: 100vw;
-            margin-bottom: 18px;
-            background: transparent;
-            padding: 0;
+        /* HERO SECTION */
+        .hero-section {
+            padding: 64px 0 36px 0;
+            background: linear-gradient(120deg,#f8fafc 60%,#e0e7ef 100%);
+            text-align: center;
         }
-        .genre-bar-scroll {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 0 0 4px 0;
-            scrollbar-width: thin;
-            scrollbar-color: #bfc9d1 #f5f5f5;
+        .hero-section h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
-        .genre-bar-scroll::-webkit-scrollbar {
-            height: 6px;
+        .hero-section p {
+            font-size: 1.18em;
+            color: #444;
+            max-width: 520px;
+            margin: 0 auto 18px auto;
         }
-        .genre-bar-scroll::-webkit-scrollbar-thumb {
-            background: #bfc9d1;
-            border-radius: 4px;
-        }
-        .genre-pill {
-            border: none;
-            background: #fff;
-            color: #333;
-            padding: 7px 18px;
-            border-radius: 999px;
-            font-size: 0.98em;
-            font-weight: 600;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
-            cursor: pointer;
-            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
-            outline: none;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            opacity: 0.93;
-        }
-        .genre-pill.active, .genre-pill:focus {
+        .hero-section .btn {
+            padding: 12px 32px;
+            font-size: 1.1em;
+            border-radius: 24px;
             background: #3182ce;
             color: #fff;
-            box-shadow: 0 4px 12px rgba(49,130,206,0.13);
-            opacity: 1;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(49,130,206,0.10);
+            text-decoration: none;
+            transition: background 0.2s;
         }
-        .genre-pill:hover:not(.active) {
-            background: #f0f4fa;
-            color: #222;
+
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-bottom: 18px;
+            text-align: center;
         }
-        body.dark-mode .genre-bar-scroll {
-            scrollbar-color: #444 #23272b;
+
+        /* ABOUT SHORT SECTION */
+        .about-short {
+            margin: 56px auto 0 auto;
+            max-width: 900px;
+            text-align: center;
         }
-        body.dark-mode .genre-pill {
-            background: #23272b;
-            color: #e0e0e0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.22);
+        .about-short h3 {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
-        body.dark-mode .genre-pill.active, body.dark-mode .genre-pill:focus {
-            background: #8ecae6;
-            color: #23272b;
-            box-shadow: 0 4px 12px rgba(142,202,230,0.18);
+        .about-short p {
+            font-size: 1.08em;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        body.dark-mode .genre-pill:hover:not(.active) {
-            background: #2d3237;
-            color: #fff;
+
+        /* TESTIMONI/QUOTE SECTION */
+        .testimoni-section {
+            margin: 48px auto 0 auto;
+            max-width: 700px;
+            text-align: center;
         }
-        @media (max-width: 600px) {
-            .genre-bar-wrapper { left: 8px; right: 8px; }
-            .genre-bar-scroll { gap: 5px; }
-            .genre-pill { padding: 7px 12px; font-size: 0.93em; }
+        .testimoni-section blockquote {
+            font-size: 1.15em;
+            color: #3182ce;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        .testimoni-section div {
+            color: #888;
+            font-size: 0.98em;
         }
     </style>
 
@@ -430,52 +431,38 @@
                     toggle.textContent = '🌙';
                 }
             });
-        });
-    </script>
 
-    <!-- DROPBAR GENRE FILTER -->
-    <div id="genreDropbarContainer" style="position:absolute;top:18px;right:24px;z-index:20;">
-        <button type="button" id="genreDropbarToggle" class="dropbar-toggle-btn">
-            <span class="dropbar-icon">&#128269;</span> Filter Genre
-        </button>
-        <div id="genreDropbar" class="dropbar-genre-list">
-            <form method="GET" action="" id="genreDropbarForm" style="margin:0;">
-                <div class="dropbar-scroll">
-                    <button type="submit" name="genre" value="" class="dropbar-pill{{ !request('genre') ? ' active' : '' }}">Semua Genre</button>
-                    @foreach($genres as $genre)
-                        <button type="submit" name="genre" value="{{ $genre->id }}" class="dropbar-pill{{ request('genre') == $genre->id ? ' active' : '' }}">{{ $genre->genre }}</button>
-                    @endforeach
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dropbarToggle = document.getElementById('genreDropbarToggle');
-        const dropbar = document.getElementById('genreDropbar');
-        // Toggle dropbar
-        dropbarToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropbar.classList.toggle('open');
-        });
-        // Close dropbar on click outside
-        document.addEventListener('click', function(e) {
-            if (!dropbar.contains(e.target) && !dropbarToggle.contains(e.target)) {
-                dropbar.classList.remove('open');
+            // Smooth scroll for "Lihat Karya Pilihan"
+            const karyaBtn = document.querySelector('a.btn.btn-primary[href="#highlighted-works"]');
+            if (karyaBtn) {
+                karyaBtn.addEventListener('click', function(e) {
+                    const target = document.getElementById('highlighted-works');
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
             }
         });
-        // Optional: close on ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') dropbar.classList.remove('open');
-        });
-    });
     </script>
 
-    <div class="container-fluid pt70 pb70" style="position:relative;">
-        <div id="fh5co-projects-feed" class="fh5co-projects-feed clearfix masonry">
-            @if($galleries->count())
-                @foreach ($galleries as $dept)
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container" style="max-width:700px;margin:0 auto;">
+            <img src="{{ asset('images/logo.png') }}" alt="RRStudio" style="width:90px;height:90px;border-radius:18px;box-shadow:0 2px 16px rgba(0,0,0,0.10);margin-bottom:18px;">
+            <h1 style="font-size:2.5em;font-weight:800;margin-bottom:10px;letter-spacing:-1px;">Selamat Datang di RRStudio Gallery</h1>
+            <p style="font-size:1.18em;color:#444;max-width:520px;margin:0 auto 18px auto;">Temukan karya visual terbaik, mulai dari fotografi, desain, hingga inspirasi kreatif lainnya. Jelajahi genre favoritmu dan beri komentar pada karya yang kamu suka!</p>
+            <a href="#highlighted-works" class="btn btn-primary" style="padding:12px 32px;font-size:1.1em;border-radius:24px;background:#3182ce;color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(49,130,206,0.10);text-decoration:none;transition:background 0.2s;">Lihat Karya Pilihan</a>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHTED WORKS / KARYA PILIHAN -->
+    <section id="highlighted-works" style="margin:36px auto 0 auto;max-width:1100px;">
+        <h2 style="font-size:1.6em;font-weight:700;margin-bottom:18px;text-align:center;">Karya Pilihan</h2>
+        <div class="fh5co-projects-feed">
+            @php $highlighted = $galleries->sortByDesc('id')->take(6); @endphp
+            @if($highlighted->count())
+                @foreach ($highlighted as $dept)
                     <div class="fh5co-project masonry-brick">
                         <a href="{{ route('frontend.single', $dept->id) }}" style="display:block; position:relative;">
                             <div class="photo-header">
@@ -497,10 +484,25 @@
                     </div>
                 @endforeach
             @else
-                <div style="width:100%;text-align:center; color:#888; font-size:1.08em; padding:40px 0; display:flex; align-items:center; justify-content:center; min-height:120px;">Belum ada foto di genre ini.</div>
+                <div style="width:100%;text-align:center; color:#888; font-size:1.08em; padding:40px 0; display:flex; align-items:center; justify-content:center; min-height:120px;">Belum ada karya yang di-highlight.</div>
             @endif
         </div>
-    </div>
+        <div style="text-align:center;margin-top:24px;">
+            <a href="{{ route('frontend.work') }}" class="btn btn-outline-primary" style="padding:10px 28px;font-size:1em;border-radius:22px;border:2px solid #3182ce;color:#3182ce;font-weight:600;text-decoration:none;transition:background 0.2s, color 0.2s;">Lihat Semua Karya</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SHORT SECTION -->
+    <section style="margin:56px auto 0 auto;max-width:900px;text-align:center;">
+        <h3 style="font-size:1.3em;font-weight:700;margin-bottom:10px;">Tentang RRStudio</h3>
+        <p style="font-size:1.08em;color:#555;max-width:600px;margin:0 auto;">RRStudio adalah ruang digital untuk menampilkan karya visual inspiratif dari berbagai genre. Kami percaya bahwa setiap karya punya cerita dan makna. Terima kasih telah berkunjung dan mendukung kreator lokal!</p>
+    </section>
+
+    <!-- TESTIMONI/QUOTE SECTION -->
+    <section style="margin:48px auto 0 auto;max-width:700px;text-align:center;">
+        <blockquote style="font-size:1.15em;color:#3182ce;font-style:italic;margin-bottom:8px;">“Situs galeri ini sangat inspiratif dan mudah digunakan. Karyanya keren-keren!”</blockquote>
+        <div style="color:#888;font-size:0.98em;">— Pengunjung RRStudio</div>
+    </section>
 
     <footer id="fh5co-footer" role="contentinfo">
         <div class="container-fluid">
