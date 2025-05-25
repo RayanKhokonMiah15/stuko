@@ -1,8 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <header id="fh5co-header" role="banner">
-        <div class="container text-center">
+    <header id="fh5co-header" role="banner">        <div class="container text-center">
             <div id="fh5co-logo">
                 <a href="{{ route('frontend.index') }}"><img src="{{ asset('images/logo.png') }}" alt="RRStudio"></a>
             </div>
