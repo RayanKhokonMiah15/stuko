@@ -1,21 +1,46 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <header id="fh5co-header" role="banner">        <div class="container text-center">
+    <header id="fh5co-header" role="banner">
+        <div class="container text-center" style="position:relative;">
             <div id="fh5co-logo">
-                <a href="{{ route('frontend.index') }}"><img src="{{ asset('images/logo.png') }}" alt="RRStudio"></a>
+                <a href="{{ route('frontend.index') }}">
+                    <div class="hero-logo-col">
+                        <div class="hero-text-logo">RRSTUDIO</div>
+                    </div>
+                </a>
             </div>
             <nav>
                 <ul>
                     <li><a href="{{ route('frontend.about') }}">About</a></li>
                     <li class="active"><a href="{{ route('frontend.work') }}">Work</a></li>
                     <li><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
-                    <li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4">Instagram</a></li>
+                  
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- FILTER GENRE BUTTON: Modern dropbar, responsive, rapi -->
+    <div class="container-fluid" style="position:relative; margin-top: 18px; margin-bottom: 8px;">
+        <div id="genreDropbarContainer" style="display:flex; justify-content:flex-end;">
+            <div style="position:relative;">
+                <button type="button" id="genreDropbarToggle" class="dropbar-toggle-btn">
+                    <span class="dropbar-icon">&#128269;</span> Filter Genre
+                </button>
+                <div id="genreDropbar" class="dropbar-genre-list">
+                    <form method="GET" action="" id="genreDropbarForm" style="margin:0;">
+                        <div class="dropbar-scroll" style="display:flex; flex-direction:column; gap:6px; max-height:260px; overflow-y:auto;">
+                            <button type="submit" name="genre" value="" class="dropbar-pill{{ !request('genre') ? ' active' : '' }}">Semua Genre</button>
+                            @foreach($genres as $genre)
+                                <button type="submit" name="genre" value="{{ $genre->id }}" class="dropbar-pill{{ request('genre') == $genre->id ? ' active' : '' }}">{{ $genre->genre }}</button>
+                            @endforeach
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <style>
         /* Copy style dari index agar konsisten */
         .fh5co-projects-feed {
@@ -212,16 +237,21 @@
         .dropbar-toggle-btn {
             display: flex;
             align-items: center;
-            padding: 10px 16px;
-            font-size: 0.9em;
-            font-weight: 500;
+            padding: 14px 28px; /* Perbesar tombol */
+            font-size: 1.08em; /* Perbesar font */
+            font-weight: 600;
             color: #333;
             background: #fff;
             border: none;
             border-radius: 999px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .dropbar-toggle-btn .dropbar-icon {
+            font-size: 1.25em;
+            margin-right: 8px;
         }
         .dropbar-toggle-btn:hover {
             background: #f0f4fa;
@@ -240,7 +270,9 @@
             top: 60px;
             right: 0;
             z-index: 100;
-            width: 250px;
+            min-width: 220px;
+            max-width: 320px;
+            width: max-content;
             background: linear-gradient(120deg,#f8fafc 70%,#e0e7ef 100%);
             border: 1.5px solid #e2e8f0;
             border-radius: 14px;
@@ -259,68 +291,44 @@
             pointer-events: auto;
             transform: translateY(0) scale(1);
         }
-        body.dark-mode .dropbar-genre-list {
-            background: linear-gradient(120deg,#23272b 70%,#181a1b 100%);
-            border: 1.5px solid #444;
-        }
-        body.dark-mode .dropbar-genre-list.open {
-            /* dark mode tetap pakai background dan border yang sama, hanya animasi open */
-            opacity: 1;
-            pointer-events: auto;
-            max-height: 400px;
-            transform: translateY(0) scale(1);
-        }
         .dropbar-scroll {
             display: flex;
             flex-direction: column;
             gap: 6px;
-            max-height: 220px;
+            max-height: 260px;
             overflow-y: auto;
-            padding: 0 8px;
+            padding: 0 12px 0 12px;
         }
         .dropbar-pill {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 18px 10px 16px;
-            margin: 0 0 2px 0;
             border: none;
-            border-radius: 999px;
             background: #fff;
             color: #333;
+            padding: 9px 18px;
+            border-radius: 999px;
             font-size: 1em;
             font-weight: 600;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
             cursor: pointer;
-            transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
             outline: none;
-            opacity: 0.97;
-            position: relative;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            opacity: 0.93;
+            text-align: left;
         }
         .dropbar-pill.active, .dropbar-pill:focus {
             background: #3182ce;
             color: #fff;
             box-shadow: 0 4px 12px rgba(49,130,206,0.13);
-            transform: scale(1.04);
             opacity: 1;
         }
         .dropbar-pill:hover:not(.active) {
             background: #f0f4fa;
             color: #222;
-            transform: scale(1.03);
         }
-        .dropbar-pill::before {
-            content: '';
-            display: block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #bfc9d1;
-            margin-right: 8px;
-            transition: background 0.2s;
-        }
-        .dropbar-pill.active::before {
-            background: #fff;
+        body.dark-mode .dropbar-genre-list {
+            background: linear-gradient(120deg,#23272b 70%,#181a1b 100%);
+            border: 1.5px solid #444;
         }
         body.dark-mode .dropbar-pill {
             background: #23272b;
@@ -336,74 +344,126 @@
             background: #2d3237;
             color: #fff;
         }
-        body.dark-mode .dropbar-pill::before {
-            background: #444;
-        }
-        body.dark-mode .dropbar-pill.active::before {
-            background: #23272b;
-        }
-        /* Scrollbar styling */
-        .dropbar-scroll::-webkit-scrollbar {
-            width: 7px;
-        }
-        .dropbar-scroll::-webkit-scrollbar-thumb {
-            background: #e2e8f0;
-            border-radius: 6px;
-        }
-        body.dark-mode .dropbar-scroll::-webkit-scrollbar-thumb {
-            background: #444;
-        }
-        /* Tambahan agar dropbar bisa diklik dan muncul */
-        .dropbar-genre-list.open {
-            opacity: 1;
-            max-height: 400px;
-            pointer-events: auto;
-            transform: translateY(0) scale(1);
+        @media (max-width: 600px) {
+            #genreDropbarContainer { width: 100%; padding-right: 4px; }
+            .dropbar-genre-list { min-width: 140px; max-width: 98vw; width: 98vw; right: 0; left: auto; }
         }
     </style>
-
-    <!-- FILTER GENRE (DROPBAR MODERN) -->
-    <div id="genreDropbarContainer" style="position:absolute;top:18px;right:24px;z-index:20;">
-        <button type="button" id="genreDropbarToggle" class="dropbar-toggle-btn">
-            <span class="dropbar-icon">&#128269;</span> Filter Genre
-        </button>
-        <div id="genreDropbar" class="dropbar-genre-list">
-            <form method="GET" action="" id="genreDropbarForm" style="margin:0;">
-                <div class="dropbar-scroll">
-                    <button type="submit" name="genre" value="" class="dropbar-pill{{ !request('genre') ? ' active' : '' }}">Semua Genre</button>
-                    @foreach($genres as $genre)
-                        <button type="submit" name="genre" value="{{ $genre->id }}" class="dropbar-pill{{ request('genre') == $genre->id ? ' active' : '' }}">{{ $genre->genre }}</button>
-                    @endforeach
-                </div>
-            </form>
-        </div>
+    <!-- Floating Instagram button (copy from home) -->
+    <div class="floating-social">
+        <a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4" target="_blank" class="social-link instagram" title="Instagram">
+            <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Instagram" class="social-icon">
+        </a>
     </div>
+    <!-- DARK MODE TOGGLE BUTTON & SCRIPT (copy from home) -->
+    <button id="darkModeToggle" title="Toggle dark mode">🌙</button>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dropbarToggle = document.getElementById('genreDropbarToggle');
-        const dropbar = document.getElementById('genreDropbar');
-        dropbar.style.display = 'block'; // always in DOM for smooth anim
-        dropbar.classList.remove('open');
-        dropbarToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropbar.classList.toggle('open');
-            dropbarToggle.classList.toggle('active');
-        });
-        document.addEventListener('click', function(e) {
-            if (!dropbar.contains(e.target) && !dropbarToggle.contains(e.target)) {
-                dropbar.classList.remove('open');
-                dropbarToggle.classList.remove('active');
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.textContent = '☀️';
             }
+            toggle.addEventListener('click', function () {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    toggle.textContent = '☀️';
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    toggle.textContent = '🌙';
+                }
+            });
+            // Toggle genre dropbar
+            const dropbarToggle = document.getElementById('genreDropbarToggle');
+            const dropbar = document.getElementById('genreDropbar');
+            document.addEventListener('click', function(e) {
+                if (dropbarToggle && dropbar) {
+                    if (dropbarToggle.contains(e.target)) {
+                        dropbar.classList.toggle('open');
+                    } else if (!dropbar.contains(e.target)) {
+                        dropbar.classList.remove('open');
+                    }
+                }
+            });
         });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                dropbar.classList.remove('open');
-                dropbarToggle.classList.remove('active');
-            }
-        });
-    });
     </script>
-    <!-- END FILTER GENRE -->
+    <style>
+        /* ====== DARK MODE FROM HOME ====== */
+        body.dark-mode {
+            background: #181a1b !important;
+            color: #e0e0e0 !important;
+        }
+        a {
+            color: #3182ce;
+            text-decoration: none;
+            transition: color 0.18s;
+        }
+        a:hover {
+            color: #2563eb;
+        }
+        body.dark-mode a {
+            color: #8ecae6;
+        }
+        body.dark-mode a:hover {
+            color: #fff;
+        }
+        #darkModeToggle {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1000;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #23272b 60%, #181a1b 100%);
+            color: #fff;
+            font-size: 1.7em;
+            box-shadow: 0 2px 12px rgba(49,130,206,0.13);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        #darkModeToggle:hover {
+            background: #3182ce;
+            color: #fff;
+        }
+        body.dark-mode #darkModeToggle {
+            background: linear-gradient(135deg, #e0e0e0 60%, #8ecae6 100%);
+            color: #23272b;
+        }
+        .floating-social {
+            position: fixed;
+            right: 92px;
+            bottom: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+        }
+        @media (max-width: 600px) {
+            .floating-social {
+                right: 80px;
+                bottom: 20px;
+                gap: 10px;
+            }
+        }
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .social-icon:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+    </style>
 
     <div class="container-fluid pt70 pb70" style="position:relative;">
         <div id="fh5co-projects-feed" class="fh5co-projects-feed clearfix masonry">
@@ -437,28 +497,6 @@
             @endif
         </div>
     </div>
-
-    <button id="darkModeToggle" title="Toggle dark mode">🌙</button>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggle = document.getElementById('darkModeToggle');
-            const body = document.body;
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                body.classList.add('dark-mode');
-                toggle.textContent = '☀️';
-            }
-            toggle.addEventListener('click', function () {
-                body.classList.toggle('dark-mode');
-                if (body.classList.contains('dark-mode')) {
-                    localStorage.setItem('darkMode', 'enabled');
-                    toggle.textContent = '☀️';
-                } else {
-                    localStorage.setItem('darkMode', 'disabled');
-                    toggle.textContent = '🌙';
-                }
-            });
-        });
-    </script>
 
     <footer id="fh5co-footer" role="contentinfo">
         <div class="container-fluid">

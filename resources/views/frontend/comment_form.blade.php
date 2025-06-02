@@ -13,7 +13,6 @@
                     <li><a href="{{ route('frontend.about') }}">About</a></li>
                     <li><a href="{{ route('frontend.work') }}">Work</a></li>
                     <li><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
-                    <li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4">Instagram</a></li>
                 </ul>
             </nav>
         </div>
@@ -146,5 +145,75 @@
             font-size: 0.97em;
         }
     }
+
+    /* ====== DARK MODE FROM HOME ====== */
+    body.dark-mode {
+        background: #181a1b !important;
+        color: #e0e0e0 !important;
+    }
+    a {
+        color: #3182ce;
+        text-decoration: none;
+        transition: color 0.18s;
+    }
+    a:hover {
+        color: #2563eb;
+    }
+    body.dark-mode a {
+        color: #8ecae6;
+    }
+    body.dark-mode a:hover {
+        color: #fff;
+    }
+    #darkModeToggle {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 1000;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, #23272b 60%, #181a1b 100%);
+        color: #fff;
+        font-size: 1.7em;
+        box-shadow: 0 2px 12px rgba(49,130,206,0.13);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+    }
+    #darkModeToggle:hover {
+        background: #3182ce;
+        color: #fff;
+    }
+    body.dark-mode #darkModeToggle {
+        background: linear-gradient(135deg, #e0e0e0 60%, #8ecae6 100%);
+        color: #23272b;
+    }
+
     </style>
+    <!-- DARK MODE TOGGLE BUTTON & SCRIPT (copy from home, tanpa Instagram) -->
+    <button id="darkModeToggle" title="Toggle dark mode">🌙</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.textContent = '☀️';
+            }
+            toggle.addEventListener('click', function () {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    toggle.textContent = '☀️';
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    toggle.textContent = '🌙';
+                }
+            });
+        });
+    </script>
 @endsection

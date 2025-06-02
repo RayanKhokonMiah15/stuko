@@ -5,7 +5,9 @@
         <div class="container text-center">
             <div id="fh5co-logo">
                 <a href="{{ route('frontend.index') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="RRStudio">
+                    <div class="hero-logo-col">
+    <div class="hero-text-logo">RRSTUDIO</div>
+</div>
                 </a>
             </div>
             <nav>
@@ -13,7 +15,6 @@
                     <li><a href="{{ route('frontend.about') }}">About</a></li>
                     <li><a href="{{ route('frontend.work') }}">Work</a></li>
                     <li class="active"><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
-                    <li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4">Instagram</a></li>
                 </ul>
             </nav>
         </div>
@@ -62,7 +63,7 @@
             <div style="background:#f8fafc;border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,0.06);padding:28px 18px;max-width:300px;">
                 <img src="https://img.icons8.com/ios-filled/50/3182ce/camera.png" alt="Jasa Foto" style="width:44px;height:44px;margin-bottom:10px;">
                 <div style="font-weight:600;font-size:1.08em;margin-bottom:6px;">Jasa Fotografi</div>
-                <div style="color:#555;font-size:0.98em;">Pemotretan produk, event, portrait, dan kebutuhan visual lainnya.</div>
+                <div style="color:#555;font-size:0.98em;">Pemotretan produk, event, portrait, dan kebutuhan visual lainnya yang menarik dan berkualitas tinggi.</div>
                 <button class="btn-pesan" onclick="openSidebar('Jasa Fotografi')" style="margin-top:14px;padding:8px 22px;border-radius:22px;background:#3182ce;color:#fff;font-weight:600;border:none;cursor:pointer;transition:background 0.2s;display:inline-block;">Pesan Sekarang</button>
             </div>
             <!-- Jasa Desain Grafis -->
@@ -81,7 +82,7 @@
             </div>
         </div>
         <!-- SIDEBAR FORM -->
-        <div id="sidebarForm" style="position:fixed;top:0;right:-420px;width:370px;max-width:95vw;height:100vh;background:#fff;box-shadow:-2px 0 16px rgba(0,0,0,0.13);z-index:9999;transition:right 0.35s cubic-bezier(.4,0,.2,1);padding:36px 28px 24px 28px;overflow-y:auto;">
+        <div id="sidebarForm" style="position:fixed;top:0;right:-420px;width=370px;max-width:95vw;height:100vh;background:#fff;box-shadow:-2px 0 16px rgba(0,0,0,0.13);z-index:9999;transition:right 0.35s cubic-bezier(.4,0,.2,1);padding:36px 28px 24px 28px;overflow-y:auto;">
             <button onclick="closeSidebar()" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:1.7em;color:#888;cursor:pointer;">&times;</button>
             <h3 id="sidebarTitle" style="font-size:1.25em;font-weight:700;margin-bottom:18px;color:#3182ce;">Form Pemesanan</h3>
             <form onsubmit="return sendToWhatsApp(event)">
@@ -140,7 +141,109 @@
         });
         </script>
     </section>
-
+    <!-- Floating Instagram button (copy from home) -->
+    <div class="floating-social">
+        <a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4" target="_blank" class="social-link instagram" title="Instagram">
+            <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Instagram" class="social-icon">
+        </a>
+    </div>
+    <!-- DARK MODE TOGGLE BUTTON & SCRIPT (copy from home) -->
+    <button id="darkModeToggle" title="Toggle dark mode">🌙</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.textContent = '☀️';
+            }
+            toggle.addEventListener('click', function () {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    toggle.textContent = '☀️';
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    toggle.textContent = '🌙';
+                }
+            });
+        });
+    </script>
+    <style>
+        /* ====== DARK MODE FROM HOME ====== */
+        body.dark-mode {
+            background: #181a1b !important;
+            color: #e0e0e0 !important;
+        }
+        a {
+            color: #3182ce;
+            text-decoration: none;
+            transition: color 0.18s;
+        }
+        a:hover {
+            color: #2563eb;
+        }
+        body.dark-mode a {
+            color: #8ecae6;
+        }
+        body.dark-mode a:hover {
+            color: #fff;
+        }
+        #darkModeToggle {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1000;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #23272b 60%, #181a1b 100%);
+            color: #fff;
+            font-size: 1.7em;
+            box-shadow: 0 2px 12px rgba(49,130,206,0.13);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        #darkModeToggle:hover {
+            background: #3182ce;
+            color: #fff;
+        }
+        body.dark-mode #darkModeToggle {
+            background: linear-gradient(135deg, #e0e0e0 60%, #8ecae6 100%);
+            color: #23272b;
+        }
+        .floating-social {
+            position: fixed;
+            right: 92px;
+            bottom: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+        }
+        @media (max-width: 600px) {
+            .floating-social {
+                right: 80px;
+                bottom: 20px;
+                gap: 10px;
+            }
+        }
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .social-icon:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+    </style>
     <footer id="fh5co-footer" role="contentinfo">
         <div class="container-fluid">
             <div class="footer-content">
