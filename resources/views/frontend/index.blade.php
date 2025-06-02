@@ -460,7 +460,7 @@
     <section id="highlighted-works" style="margin:36px auto 0 auto;max-width:1100px;">
         <h2 style="font-size:1.6em;font-weight:700;margin-bottom:18px;text-align:center;">Karya Pilihan</h2>
         <div class="fh5co-projects-feed">
-            @php $highlighted = $galleries->sortByDesc('id')->take(6); @endphp
+            @php $highlighted = $galleries->sortByDesc('id')->take(5); @endphp
             @if($highlighted->count())
                 @foreach ($highlighted as $dept)
                     <div class="fh5co-project masonry-brick">

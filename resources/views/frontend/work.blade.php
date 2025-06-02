@@ -20,9 +20,9 @@
         /* Copy style dari index agar konsisten */
         .fh5co-projects-feed {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 4px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Responsive, naik ke atas jika cukup ruang */
+            gap: 16px;
+            padding: 16px;
         }
         .fh5co-project {
             position: relative;
