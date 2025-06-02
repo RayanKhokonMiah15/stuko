@@ -16,7 +16,7 @@
 						<li class="active"><a href="{{ route('frontend.about') }}">About</a></li>
 						<li><a href="{{ route('frontend.work') }}">Work</a></li>
 						<li><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
-						<li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4">Instagram</a></li>
+						
 					</ul>
 				</nav>
 			</div>

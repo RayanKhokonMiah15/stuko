@@ -15,7 +15,7 @@
                     <li><a href="{{ route('frontend.about') }}">About</a></li>
                     <li class="active"><a href="{{ route('frontend.work') }}">Work</a></li>
                     <li><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
-                    <li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4">Instagram</a></li>
+                  
                 </ul>
             </nav>
         </div>
@@ -270,7 +270,9 @@
             top: 60px;
             right: 0;
             z-index: 100;
-            width: 250px;
+            min-width: 260px;
+            max-width: 340px;
+            width: max-content;
             background: linear-gradient(120deg,#f8fafc 70%,#e0e7ef 100%);
             border: 1.5px solid #e2e8f0;
             border-radius: 14px;
@@ -289,152 +291,54 @@
             pointer-events: auto;
             transform: translateY(0) scale(1);
         }
-        body.dark-mode .dropbar-genre-list {
-            background: linear-gradient(120deg,#23272b 70%,#181a1b 100%);
-            border: 1.5px solid #444;
-        }
-        body.dark-mode .dropbar-genre-list.open {
-            /* dark mode tetap pakai background dan border yang sama, hanya animasi open */
-            opacity: 1;
-            pointer-events: auto;
-            max-height: 400px;
-            transform: translateY(0) scale(1);
-        }
-        .dropbar-scroll {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            max-height: 220px;
-            overflow-y: auto;
-            padding: 0 8px;
-        }
-        .dropbar-pill {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 18px 10px 16px;
-            margin: 0 0 2px 0;
-            border: none;
-            border-radius: 999px;
-            background: #fff;
-            color: #333;
-            font-size: 1em;
-            font-weight: 600;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-            cursor: pointer;
-            transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
-            outline: none;
-            opacity: 0.97;
-            position: relative;
-        }
-        .dropbar-pill.active, .dropbar-pill:focus {
-            background: #3182ce;
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(49,130,206,0.13);
-            transform: scale(1.04);
-            opacity: 1;
-        }
-        .dropbar-pill:hover:not(.active) {
-            background: #f0f4fa;
-            color: #222;
-            transform: scale(1.03);
-        }
-        .dropbar-pill::before {
-            content: '';
-            display: block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #bfc9d1;
-            margin-right: 8px;
-            transition: background 0.2s;
-        }
-        .dropbar-pill.active::before {
-            background: #fff;
-        }
-        body.dark-mode .dropbar-pill {
-            background: #23272b;
-            color: #e0e0e0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.22);
-        }
-        body.dark-mode .dropbar-pill.active, body.dark-mode .dropbar-pill:focus {
-            background: #8ecae6;
-            color: #23272b;
-            box-shadow: 0 4px 12px rgba(142,202,230,0.18);
-        }
-        body.dark-mode .dropbar-pill:hover:not(.active) {
-            background: #2d3237;
-            color: #fff;
-        }
-        body.dark-mode .dropbar-pill::before {
-            background: #444;
-        }
-        body.dark-mode .dropbar-pill.active::before {
-            background: #23272b;
-        }
-        /* Scrollbar styling */
-        .dropbar-scroll::-webkit-scrollbar {
-            width: 7px;
-        }
-        .dropbar-scroll::-webkit-scrollbar-thumb {
-            background: #e2e8f0;
-            border-radius: 6px;
-        }
-        body.dark-mode .dropbar-scroll::-webkit-scrollbar-thumb {
-            background: #444;
-        }
-        /* Tambahan agar dropbar bisa diklik dan muncul */
-        .dropbar-genre-list.open {
-            opacity: 1;
-            max-height: 400px;
-            pointer-events: auto;
-            transform: translateY(0) scale(1);
-        }
-
-        /* Perbaikan posisi tombol filter genre agar tidak menabrak menu About */
-        #genreDropbarContainer {
-            display: flex;
-            justify-content: flex-end;
-            position: static !important;
-            right: auto !important;
-            top: auto !important;
-            margin-bottom: 8px;
-            z-index: 10;
-            width: 100%;
-            padding-right: 32px; /* Tambah margin kanan agar tidak terlalu mepet */
-        }
-        #genreDropbarContainer > div {
-            position: relative;
-        }
-        .dropbar-genre-list {
-            position: absolute;
-            right: 0;
-            left: auto;
-            top: 48px;
-            min-width: 220px;
-        }
-        @media (max-width: 900px) {
-            #genreDropbarContainer {
-                padding-right: 12px;
-            }
-            .dropbar-toggle-btn {
-                padding: 12px 18px;
-                font-size: 1em;
-            }
-        }
         @media (max-width: 600px) {
-            #genreDropbarContainer {
-                padding-right: 4px;
-            }
-            .dropbar-toggle-btn {
-                padding: 10px 12px;
-                font-size: 0.97em;
-            }
-        }
-        nav ul {
-            padding-right: 0 !important;
+            #genreDropbarContainer { width: 100%; padding-right: 4px; }
+            .dropbar-genre-list { min-width: 180px; max-width: 98vw; width: 98vw; right: 0; left: auto; }
         }
     </style>
+
+     <!-- Pindahkan floating social ke kiri dark mode toggle -->
+    <div class="floating-social">
+    <a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4" target="_blank" class="social-link instagram" title="Instagram">
+        <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Instagram" class="social-icon">
+    </a>
+</div>
+
+
+    <!-- function buat mode hitam  -->
+    <button id="darkModeToggle" title="Toggle dark mode">🌙</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.textContent = '☀️';
+            }
+            toggle.addEventListener('click', function () {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    toggle.textContent = '☀️';
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    toggle.textContent = '🌙';
+                }
+            });
+
+            // Smooth scroll for "Lihat Karya Pilihan"
+            const karyaBtn = document.querySelector('a.btn.btn-primary[href="#highlighted-works"]');
+            if (karyaBtn) {
+                karyaBtn.addEventListener('click', function(e) {
+                    const target = document.getElementById('highlighted-works');
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+        });
+    </script>
 
     <div class="container-fluid pt70 pb70" style="position:relative;">
         <div id="fh5co-projects-feed" class="fh5co-projects-feed clearfix masonry">
@@ -486,6 +390,19 @@
                 } else {
                     localStorage.setItem('darkMode', 'disabled');
                     toggle.textContent = '🌙';
+                }
+            });
+
+            // Toggle genre dropbar
+            const dropbarToggle = document.getElementById('genreDropbarToggle');
+            const dropbar = document.getElementById('genreDropbar');
+            document.addEventListener('click', function(e) {
+                if (dropbarToggle && dropbar) {
+                    if (dropbarToggle.contains(e.target)) {
+                        dropbar.classList.toggle('open');
+                    } else if (!dropbar.contains(e.target)) {
+                        dropbar.classList.remove('open');
+                    }
                 }
             });
         });

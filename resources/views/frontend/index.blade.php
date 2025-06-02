@@ -15,7 +15,6 @@
                     <li><a href="{{ route('frontend.about') }}">About</a></li>
                     <li><a href="{{ route('frontend.work') }}">Work</a></li>
                     <li><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
-                    <li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4 ">Instagram</a></li>
                 </ul>
             </nav>
         </div>
@@ -43,30 +42,32 @@
             box-shadow: none;
             padding: 48px 40px 40px 40px;
             border: none;
-            max-width: 1100px;
-            margin: 0 auto 24px 0; /* align to left */
+            max-width: 2500px; /* Lebarkan container */
+            margin: 0 auto 24px 0;
         }
         .hero-text-col {
-            flex: 2;
+            flex: 2.2;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             justify-content: center;
             text-align: left;
+            max-width: 2000px; /* Lebarkan area teks */
         }
         .hero-logo-col {
-            flex: 1.2;
+            flex: 1.5;
             display: flex;
             justify-content: flex-end;
-            align-items: center;
+            align-items: right;
         }
         .hero-title-redesign {
-            font-size: 2.6em;
+            font-size: 3.5em; /* Perbesar font */
             font-weight: 900;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             letter-spacing: -1.5px;
             color: #23272b;
             text-align: left;
+            line-height: 1.08;
         }
         .highlight-text {
             color: #3182ce;
@@ -76,61 +77,39 @@
             -webkit-text-fill-color: transparent;
         }
         .hero-underline-redesign {
-            width: 90px;
-            height: 6px;
+            width: 120px;
+            height: 7px;
             background: linear-gradient(90deg,#3182ce 60%,#8ecae6 100%);
             border-radius: 3px;
-            margin: 0 0 22px 0;
+            margin: 0 0 28px 0;
             opacity: 0.9;
             animation: underlineGrow 1s cubic-bezier(.4,2,.6,1) 0.1s;
         }
         .hero-desc-redesign {
-            font-size: 1.22em;
+            font-size: 1.40em; /* Perbesar font */
             color: #444;
-            max-width: 520px;
-            margin: 0 0 22px 0;
+            max-width: 1000px; /* Lebarkan area teks */
+            margin: 0 0 28px 0;
             text-align: left;
-            line-height: 1.7;
+            line-height: 1.5;
         }
         .hero-btn-redesign {
-            padding: 14px 36px;
-            font-size: 1.13em;
-            border-radius: 28px;
-            background: linear-gradient(90deg,#3182ce 60%,#8ecae6 100%);
-            color: #fff;
-            font-weight: 700;
-            box-shadow: 0 2px 12px rgba(49,130,206,0.13);
-            text-decoration: none;
-            transition: background 0.2s, transform 0.18s;
-            margin-top: 10px;
-            display: inline-block;
-            border: none;
+            padding: 18px 48px;
+            font-size: 1.22em;
+            border-radius: 32px;
+            margin-top: 16px;
         }
-        .hero-btn-redesign:hover {
-            background: linear-gradient(90deg,#2563eb 60%,#3182ce 100%);
-            transform: translateY(-2px) scale(1.04);
-        }
-        .hero-logo-circle {
-            background: linear-gradient(135deg, #3182ce 60%, #8ecae6 100%);
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0;
-            box-shadow: 0 4px 18px rgba(49,130,206,0.13);
-            transition: transform 0.18s;
-        }
-        .hero-logo-circle:hover {
-            transform: scale(1.06) rotate(-3deg);
-        }
-        .hero-logo-img-redesign {
-            width: 90px;
-            height: 90px;
-            border-radius: 20px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
-            background: #fff;
+        @media (max-width: 1200px) {
+            .hero-container-redesign.hero-flex-row {
+                max-width: 98vw;
+                padding: 32px 8vw 32px 4vw;
+            }
+            .hero-text-col {
+                max-width: 98vw;
+            }
+            .hero-desc-redesign {
+                max-width: 98vw;
+            }
         }
         @media (max-width: 900px) {
             .hero-container-redesign.hero-flex-row {
@@ -138,12 +117,14 @@
                 gap: 24px;
                 padding: 28px 8px 22px 8px;
                 margin: 0 auto 24px auto;
+                max-width: 100vw;
             }
             .hero-text-col, .hero-logo-col {
                 align-items: center;
                 justify-content: center;
                 width: 100%;
                 text-align: center;
+                max-width: 100vw;
             }
             .hero-text-col {
                 align-items: center;
@@ -387,8 +368,46 @@
         }
         /* ====== END DARK MODE TOGGLE ====== */
 
+        /* ====== FLOATING SOCIAL MEDIA AND AI NAVBAR ====== */
+        .floating-social {
+            position: fixed;
+            right: 92px; /* Geser ke kiri dari dark mode toggle */
+            bottom: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+        }
+        @media (max-width: 600px) {
+            .floating-social {
+                right: 80px;
+                bottom: 20px;
+                gap: 10px;
+            }
+        }
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .social-icon:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+
         
     </style>
+
+    <!-- Pindahkan floating social ke kiri dark mode toggle -->
+    <div class="floating-social">
+    <a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4" target="_blank" class="social-link instagram" title="Instagram">
+        <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Instagram" class="social-icon">
+    </a>
+</div>
+
 
     <!-- function buat mode hitam  -->
     <button id="darkModeToggle" title="Toggle dark mode">🌙</button>
@@ -427,26 +446,28 @@
 
     <!-- HERO SECTION -->
     <section class="hero-section">
-        <div class="container hero-container-redesign hero-flex-row">
-            <div class="hero-text-col">
-                <h1 class="hero-title-redesign">Selamat Datang di <span class="highlight-text">RRStudio Gallery</span></h1>
-                <div class="hero-underline-redesign"></div>
-                <p class="hero-desc-redesign">
-                    Temukan beragam karya visual terbaik yang dikurasi dengan penuh <span class="highlight-text">kreativitas</span>, mulai dari fotografi artistik, desain grafis yang memukau, hingga berbagai inspirasi kreatif lainnya yang menggugah imajinasi. Jelajahi genre favoritmu dengan lebih mendalam, temukan karya yang sesuai dengan seleramu, dan jangan ragu untuk memberikan komentar, apresiasi, atau pendapatmu pada setiap karya yang menarik perhatianmu!
-                </p>
-                <a href="#highlighted-works" class="btn btn-primary hero-btn-redesign">Lihat Karya Pilihan</a>
-            </div>
-            <div class="hero-logo-col">
-                <div class="hero-logo-circle">
-                    <img src="{{ asset('images/') }}" alt="RRStudio" class="hero-logo-img-redesign">
-                </div>
-            </div>
+    <div class="container hero-container-redesign hero-flex-row">
+        <div class="hero-text-col">
+            <h1 class="hero-title-redesign">
+                Selamat Datang di <span class="highlight-text">RRStudio Gallery</span>
+            </h1>
+            <div class="hero-underline-redesign"></div>
+            <p class="hero-desc-redesign">
+                Temukan beragam karya visual terbaik yang dikurasi dengan penuh kreativitas, mulai dari fotografi artistik, desain grafis yang memukau, hingga berbagai inspirasi kreatif lainnya yang menggugah imajinasi. Jelajahi genre favoritmu dengan lebih mendalam, temukan karya yang sesuai dengan seleramu, dan jangan ragu untuk memberikan komentar, apresiasi, atau pendapatmu pada setiap karya yang menarik perhatianmu!
+            </p>
+            <a href="#highlighted-works" class="btn btn-primary hero-btn-redesign">Lihat Karya Pilihan</a>
         </div>
-    </section>
+        <div class="hero-logo-col">
+            <!-- Ganti image dengan text -->
+            <div class="hero-logo-text">RRSTUDIO</div>
+        </div>
+    </div>
+</section>
+
 
     <!-- HIGHLIGHTED WORKS / KARYA PILIHAN -->
     <section id="highlighted-works" style="margin:36px auto 0 auto;max-width:1100px;">
-        <h2 style="font-size:1.6em;font-weight:700;margin-bottom:18px;text-align:center;">Karya Pilihan</h2>
+        <h2 style="font-size:2.0em;font-weight:700;margin-bottom:18px;text-align:center;">Karya Pilihan</h2>
         <div class="fh5co-projects-feed">
             @php $highlighted = $galleries->sortByDesc('id')->take(6); @endphp
             @if($highlighted->count())
@@ -482,7 +503,7 @@
 
     <!-- ABOUT SHORT SECTION -->
     <section style="margin:56px auto 0 auto;max-width:900px;text-align:center;">
-        <h3 style="font-size:1.3em;font-weight:700;margin-bottom:10px;">Tentang RRStudio</h3>
+        <h3 style="font-size:2.0em;font-weight:700;margin-bottom:10px;">Tentang RRStudio</h3>
         <p style="font-size:1.08em;color:#555;max-width:600px;margin:0 auto;">RRStudio adalah sebuah ruang digital yang didedikasikan untuk menampilkan karya-karya visual inspiratif dari berbagai genre—mulai dari fotografi, desain grafis, ilustrasi digital, hingga bentuk ekspresi visual lainnya. Kami percaya bahwa di balik setiap karya terdapat cerita, emosi, dan pesan yang ingin disampaikan oleh sang kreator.
 
 Platform ini tidak hanya menjadi etalase bagi para seniman dan desainer lokal untuk memperkenalkan karya mereka kepada publik yang lebih luas, tetapi juga sebagai tempat bertemu, berbagi, dan saling menginspirasi antar pencipta dan penikmat karya.
@@ -491,6 +512,8 @@ Terima kasih telah berkunjung dan menjadi bagian dari komunitas kreatif ini. Duk
 
 </p>
     </section>
+    
+    
 
     <!-- TESTIMONI/QUOTE SECTION -->
     <section style="margin:48px auto 0 auto;max-width:700px;text-align:center;">

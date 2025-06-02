@@ -15,7 +15,6 @@
                     <li><a href="{{ route('frontend.about') }}">About</a></li>
                     <li><a href="{{ route('frontend.work') }}">Work</a></li>
                     <li class="active"><a href="{{ route('frontend.testimoni') }}">Testimoni</a></li>
-                    <li><a href="https://www.instagram.com/_yanmoon?igsh=em83dXBicTBpb2Y4">Instagram</a></li>
                 </ul>
             </nav>
         </div>
@@ -64,7 +63,7 @@
             <div style="background:#f8fafc;border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,0.06);padding:28px 18px;max-width:300px;">
                 <img src="https://img.icons8.com/ios-filled/50/3182ce/camera.png" alt="Jasa Foto" style="width:44px;height:44px;margin-bottom:10px;">
                 <div style="font-weight:600;font-size:1.08em;margin-bottom:6px;">Jasa Fotografi</div>
-                <div style="color:#555;font-size:0.98em;">Pemotretan produk, event, portrait, dan kebutuhan visual lainnya.</div>
+                <div style="color:#555;font-size:0.98em;">Pemotretan produk, event, portrait, dan kebutuhan visual lainnya yang menarik dan berkualitas tinggi.</div>
                 <button class="btn-pesan" onclick="openSidebar('Jasa Fotografi')" style="margin-top:14px;padding:8px 22px;border-radius:22px;background:#3182ce;color:#fff;font-weight:600;border:none;cursor:pointer;transition:background 0.2s;display:inline-block;">Pesan Sekarang</button>
             </div>
             <!-- Jasa Desain Grafis -->
