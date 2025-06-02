@@ -5,7 +5,9 @@
         <div class="container text-center">
             <div id="fh5co-logo">
                 <a href="{{ route('frontend.index') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="RRStudio">
+                    <div class="hero-logo-col">
+    <div class="hero-text-logo">RRSTUDIO</div>
+</div>
                 </a>
             </div>
             <nav>

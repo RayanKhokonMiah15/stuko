@@ -1,9 +1,14 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <header id="fh5co-header" role="banner">        <div class="container text-center">
+    <header id="fh5co-header" role="banner">
+        <div class="container text-center" style="position:relative;">
             <div id="fh5co-logo">
-                <a href="{{ route('frontend.index') }}"><img src="{{ asset('images/logo.png') }}" alt="RRStudio"></a>
+                <a href="{{ route('frontend.index') }}">
+                    <div class="hero-logo-col">
+                        <div class="hero-text-logo">RRSTUDIO</div>
+                    </div>
+                </a>
             </div>
             <nav>
                 <ul>
@@ -15,6 +20,27 @@
             </nav>
         </div>
     </header>
+
+    <!-- FILTER GENRE BUTTON: Sekarang di kanan atas body, di atas grid gallery -->
+    <div class="container-fluid" style="position:relative; margin-top: 18px; margin-bottom: 8px;">
+        <div id="genreDropbarContainer" style="display:flex; justify-content:flex-end;">
+            <div style="position:relative;">
+                <button type="button" id="genreDropbarToggle" class="dropbar-toggle-btn">
+                    <span class="dropbar-icon">&#128269;</span> Filter Genre
+                </button>
+                <div id="genreDropbar" class="dropbar-genre-list">
+                    <form method="GET" action="" id="genreDropbarForm" style="margin:0;">
+                        <div class="dropbar-scroll">
+                            <button type="submit" name="genre" value="" class="dropbar-pill{{ !request('genre') ? ' active' : '' }}">Semua Genre</button>
+                            @foreach($genres as $genre)
+                                <button type="submit" name="genre" value="{{ $genre->id }}" class="dropbar-pill{{ request('genre') == $genre->id ? ' active' : '' }}">{{ $genre->genre }}</button>
+                            @endforeach
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <style>
         /* Copy style dari index agar konsisten */
@@ -212,16 +238,20 @@
         .dropbar-toggle-btn {
             display: flex;
             align-items: center;
-            padding: 10px 16px;
-            font-size: 0.9em;
-            font-weight: 500;
+            padding: 14px 28px; /* Perbesar tombol */
+            font-size: 1.08em; /* Perbesar font */
+            font-weight: 600;
             color: #333;
             background: #fff;
             border: none;
             border-radius: 999px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        .dropbar-toggle-btn .dropbar-icon {
+            font-size: 1.25em;
+            margin-right: 8px;
         }
         .dropbar-toggle-btn:hover {
             background: #f0f4fa;
@@ -360,50 +390,51 @@
             pointer-events: auto;
             transform: translateY(0) scale(1);
         }
-    </style>
 
-    <!-- FILTER GENRE (DROPBAR MODERN) -->
-    <div id="genreDropbarContainer" style="position:absolute;top:18px;right:24px;z-index:20;">
-        <button type="button" id="genreDropbarToggle" class="dropbar-toggle-btn">
-            <span class="dropbar-icon">&#128269;</span> Filter Genre
-        </button>
-        <div id="genreDropbar" class="dropbar-genre-list">
-            <form method="GET" action="" id="genreDropbarForm" style="margin:0;">
-                <div class="dropbar-scroll">
-                    <button type="submit" name="genre" value="" class="dropbar-pill{{ !request('genre') ? ' active' : '' }}">Semua Genre</button>
-                    @foreach($genres as $genre)
-                        <button type="submit" name="genre" value="{{ $genre->id }}" class="dropbar-pill{{ request('genre') == $genre->id ? ' active' : '' }}">{{ $genre->genre }}</button>
-                    @endforeach
-                </div>
-            </form>
-        </div>
-    </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dropbarToggle = document.getElementById('genreDropbarToggle');
-        const dropbar = document.getElementById('genreDropbar');
-        dropbar.style.display = 'block'; // always in DOM for smooth anim
-        dropbar.classList.remove('open');
-        dropbarToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropbar.classList.toggle('open');
-            dropbarToggle.classList.toggle('active');
-        });
-        document.addEventListener('click', function(e) {
-            if (!dropbar.contains(e.target) && !dropbarToggle.contains(e.target)) {
-                dropbar.classList.remove('open');
-                dropbarToggle.classList.remove('active');
+        /* Perbaikan posisi tombol filter genre agar tidak menabrak menu About */
+        #genreDropbarContainer {
+            display: flex;
+            justify-content: flex-end;
+            position: static !important;
+            right: auto !important;
+            top: auto !important;
+            margin-bottom: 8px;
+            z-index: 10;
+            width: 100%;
+            padding-right: 32px; /* Tambah margin kanan agar tidak terlalu mepet */
+        }
+        #genreDropbarContainer > div {
+            position: relative;
+        }
+        .dropbar-genre-list {
+            position: absolute;
+            right: 0;
+            left: auto;
+            top: 48px;
+            min-width: 220px;
+        }
+        @media (max-width: 900px) {
+            #genreDropbarContainer {
+                padding-right: 12px;
             }
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                dropbar.classList.remove('open');
-                dropbarToggle.classList.remove('active');
+            .dropbar-toggle-btn {
+                padding: 12px 18px;
+                font-size: 1em;
             }
-        });
-    });
-    </script>
-    <!-- END FILTER GENRE -->
+        }
+        @media (max-width: 600px) {
+            #genreDropbarContainer {
+                padding-right: 4px;
+            }
+            .dropbar-toggle-btn {
+                padding: 10px 12px;
+                font-size: 0.97em;
+            }
+        }
+        nav ul {
+            padding-right: 0 !important;
+        }
+    </style>
 
     <div class="container-fluid pt70 pb70" style="position:relative;">
         <div id="fh5co-projects-feed" class="fh5co-projects-feed clearfix masonry">

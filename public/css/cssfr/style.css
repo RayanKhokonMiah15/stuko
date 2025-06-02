@@ -78,41 +78,109 @@ figure {
 #fh5co-header #fh5co-logo img {
   max-width: 100%;
 }
-#fh5co-header nav {
-  padding-top: 20px;
+
+
+/* ====== MODERN NAVBAR ====== */
+header#fh5co-header {
+    background: rgba(255,255,255,0.82); /* transparan dan soft */
+    box-shadow: 0 4px 24px rgba(49,130,206,0.10);
+    border-bottom: 2px solid #e0e7ef;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background 0.2s, box-shadow 0.2s;
+    backdrop-filter: blur(12px);
 }
-#fh5co-header nav ul {
-  padding: 0;
-  margin: 0;
+#fh5co-header .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    min-height: 68px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-#fh5co-header nav ul li {
-  padding: 0;
-  margin: 0;
-  display: -moz-inline-stack;
-  display: inline-block;
-  zoom: 1;
-  display: inline;
-  list-style: none;
-  font-size: 15px;
+#fh5co-logo img {
+    height: 44px;
+    width: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(49,130,206,0.10);
+    background: #fff;
+    padding: 3px 7px;
+    transition: box-shadow 0.2s;
 }
-#fh5co-header nav ul li a {
-  color: #999999 !important;
-  padding: 10px;
+#fh5co-logo img:hover {
+    box-shadow: 0 4px 16px rgba(49,130,206,0.18);
 }
-@media screen and (max-width: 480px) {
-  #fh5co-header nav ul li a {
-    padding: 5px;
-  }
+nav ul {
+    display: flex;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-#fh5co-header nav ul li a:hover, #fh5co-header nav ul li a:active, #fh5co-header nav ul li a:focus {
-  color: #000 !important;
-  text-decoration: none;
-  outline: none;
+nav ul li {
+    display: inline-block;
 }
-#fh5co-header nav ul li.active a {
-  text-decoration: line-through !important;
-  color: black !important;
+nav ul li a {
+    font-weight: 700;
+    font-size: 1.08em;
+    color: #23272b;
+    padding: 8px 18px;
+    border-radius: 18px;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    letter-spacing: 0.5px;
+    position: relative;
+    background: none;
+    box-shadow: none;
+    text-decoration: none;
 }
+nav ul li a:hover, nav ul li.active a {
+    background: linear-gradient(90deg,#3182ce 60%,#8ecae6 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(49,130,206,0.10);
+    text-decoration: none;
+}
+/* Hapus underline aktif */
+nav ul li.active a:after {
+    display: none !important;
+}
+@media (max-width: 900px) {
+    #fh5co-header .container {
+        flex-direction: column;
+        gap: 8px;
+        padding: 0 8px;
+    }
+    nav ul {
+        gap: 8px;
+    }
+    #fh5co-logo img {
+        height: 36px;
+    }
+}
+body.dark-mode header#fh5co-header {
+    background: rgba(35,39,43,0.82) !important;
+    box-shadow: 0 4px 24px rgba(49,130,206,0.18);
+    border-bottom: 2px solid #23272b;
+    backdrop-filter: blur(12px);
+}
+body.dark-mode nav ul li a {
+    color: #e0e0e0;
+    background: none;
+}
+body.dark-mode nav ul li a:hover, body.dark-mode nav ul li.active a {
+    background: linear-gradient(90deg,#8ecae6 60%,#3182ce 100%);
+    color: #23272b;
+    text-decoration: none;
+}
+body.dark-mode #fh5co-logo img {
+    background: #23272b;
+}
+/* ====== END MODERN NAVBAR ====== */
+
+
 
 .fh5co-projects-feed, .footer-content {
   margin: 0 auto;
@@ -321,4 +389,31 @@ figure {
   }
 }
 
+
 /*# sourceMappingURL=style.css.map */
+
+
+
+/*ini text RRSTUDIO di sebelah kiri*/
+.hero-text-logo {
+    font-size: 2.5em;
+    font-weight: 900;
+    color: #3182ce;
+    background: linear-gradient(90deg, #3182ce 0%, #8ecae6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.2s;
+}
+
+.hero-text-logo:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+    .hero-text-logo {
+        font-size: 2em;
+        text-align: center;
+    }
+}
+
