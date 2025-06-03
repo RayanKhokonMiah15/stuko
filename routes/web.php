@@ -40,3 +40,5 @@ Route::get('/home', [FrontendController::class, 'index'])->name('frontend.index'
 Route::post('/comment/{gallery_id}', [CommentController::class, 'store'])->name('frontend.comment');
 Route::get('/comment/form/{gallery_id}', [CommentController::class, 'form'])->name('frontend.comment.form');
 Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('frontend.comment.delete');
+Route::get('/comment/{comment}/edit', [CommentController::class, 'edit'])->name('frontend.comment.edit');
+Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('frontend.comment.update');

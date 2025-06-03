@@ -5,8 +5,10 @@
         <div class="container text-center">
             <div id="fh5co-logo">
                 <a href="{{ route('frontend.index') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="RRStudio">
-                </a>
+                    <div class="hero-logo-col">
+             <div class="hero-text-logo">RRSTUDIO</div>
+        </div>
+     </a>
             </div>
             <nav>
                 <ul>
@@ -20,11 +22,14 @@
     <div class="container" style="max-width:400px;margin:40px auto 0 auto;">
         <div class="comment-form-modern-simple">
             <h3 class="comment-form-title-simple">Komentar untuk <span>{{ $gallery->nama_foto }}</span></h3>
-            <form action="{{ route('frontend.comment', $gallery->id) }}" method="POST" class="comment-form-fields-simple">
+            <form action="{{ isset($comment) ? route('frontend.comment.update', $comment->id) : route('frontend.comment', $gallery->id) }}" method="POST" class="comment-form-fields-simple">
                 @csrf
-                <input type="text" name="nama" placeholder="Nama" required class="comment-form-input-simple">
-                <textarea name="isi" placeholder="Tulis komentar..." required rows="3" class="comment-form-textarea-simple"></textarea>
-                <button type="submit" class="comment-form-btn-simple">Kirim</button>
+                @if(isset($comment))
+                    @method('PUT')
+                @endif
+                <input type="text" name="nama" placeholder="Nama" required class="comment-form-input-simple" value="{{ old('nama', $comment->nama ?? '') }}">
+                <textarea name="isi" placeholder="Tulis komentar..." required rows="3" class="comment-form-textarea-simple">{{ old('isi', $comment->isi ?? '') }}</textarea>
+                <button type="submit" class="comment-form-btn-simple">{{ isset($comment) ? 'Update' : 'Kirim' }}</button>
             </form>
             <a href="{{ route('frontend.single', $gallery->id) }}" class="comment-form-back-simple">&larr; Kembali</a>
         </div>

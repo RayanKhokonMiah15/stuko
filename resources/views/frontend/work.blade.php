@@ -498,7 +498,8 @@
         </div>
     </div>
 
-    <footer id="fh5co-footer" role="contentinfo">
+    {{-- Footer agar selalu di bawah --}}
+    <footer id="fh5co-footer" role="contentinfo" style="position:fixed; left:0; bottom:0; width:100%; z-index:1030; background:#fff; box-shadow:0 -2px 8px rgba(0,0,0,0.03);">
         <div class="container-fluid">
             <div class="footer-content">
                 <div class="copyright">

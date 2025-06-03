@@ -5,8 +5,10 @@
         <div class="container text-center">
             <div id="fh5co-logo">
                 <a href="{{ route('frontend.index') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="RRStudio">
-                </a>
+                    <div class="hero-logo-col">
+             <div class="hero-text-logo">RRSTUDIO</div>
+        </div>
+     </a>
             </div>
             <nav>
                 <ul>
@@ -295,12 +297,19 @@
                         <div class="single-comment-content">
                             <div class="single-comment-author">{{ $comment->nama }}</div>
                             <div class="single-comment-text">{{ $comment->isi }}</div>
+                            <div class="single-comment-date" style="font-size:0.92em; color:#888; margin-top:2px;">
+                                {{ $comment->tanggal_komentar ?? $comment->created_at->format('d F Y') }}
+                                @if($comment->is_edited)
+                                    <span style="color:#3182ce; font-size:0.92em;">(edited)</span>
+                                @endif
+                            </div>
                         </div>
                         <form action="{{ route('frontend.comment.delete', $comment->id) }}" method="POST" style="margin-left:10px;" class="form-delete-comment">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger" style="padding:4px 10px;font-size:0.93em; border-radius:6px; margin-top:2px;">Hapus</button>
                         </form>
+                        <a href="{{ route('frontend.comment.edit', $comment->id) }}" class="btn btn-sm btn-primary" style="padding:4px 10px;font-size:0.93em; border-radius:6px; margin-top:2px; margin-left:4px;">Edit</a>
                     </div>
                 @endforeach
             </div>

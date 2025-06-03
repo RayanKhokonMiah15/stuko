@@ -37,4 +37,25 @@ class CommentController extends Controller
         $comment->delete();
         return redirect()->route('frontend.single', $galleryId)->with('success', 'Komentar berhasil dihapus!');
     }
+
+    public function edit($commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+        $gallery = $comment->gallery;
+        return view('frontend.comment_form', compact('gallery', 'comment'));
+    }
+
+    public function update(Request $request, $commentId)
+    {
+        $request->validate([
+            'nama' => 'required|max:100',
+            'isi' => 'required',
+        ]);
+        $comment = Comment::findOrFail($commentId);
+        $comment->update([
+            'nama' => $request->nama,
+            'isi' => $request->isi,
+        ]);
+        return redirect()->route('frontend.single', $comment->gallery_id)->with('success', 'Komentar berhasil diupdate!');
+    }
 }
