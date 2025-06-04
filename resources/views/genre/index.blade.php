@@ -60,7 +60,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Genre</h6>
                         </div>
                         <div class="card-body">
-                            <a class="btn btn-warning mb-3" href="{{route('genre.create')}}">Tambah Data Le</a>
+                            <a class="btn btn-primary shadow-sm" href="{{route('genre.create')}}">Tambah Data Le</a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -81,7 +81,7 @@
                                             <td>{{$genre->genre}}</td>
                                             <td>{{$genre->deskripsi_genre}}</td>
                                             <td>
-                                                <a class="btn btn-warning" href="{{url('genre/'.$genre->id.'/edit')}}">Edit</a>
+                                                <a class="btn btn-primary shadow-sm" href="{{url('genre/'.$genre->id.'/edit')}}">Edit</a>
                                                 <form action="{{url('genre'."/".$genre->id)}}" method="POST" style="display: inline-block" >
                                                     @csrf
                                                     @method('Delete')
@@ -119,25 +119,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+  
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
